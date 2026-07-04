@@ -86,4 +86,4 @@ Kami sangat menyambut kontribusi untuk proyek ini! Jika Anda menemukan bug, ingi
 
 ---
 
-*Dibuat dengan ❤️ untuk kemajuan pariwisata, budaya, dan teknologi Kota Bandung.*
+*Dibuat untuk kemajuan pariwisata, budaya, dan teknologi Kota Bandung.*
