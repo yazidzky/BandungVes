@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="grad_g333i4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#86198f"/>
+      <stop offset="100%" stop-color="#a21caf"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#grad_g333i4)"/>
+  <!-- Decorative shapes (no filter) -->
+  <circle cx="650" cy="80" r="250" fill="white" fill-opacity="0.15"/>
+  <circle cx="100" cy="520" r="200" fill="white" fill-opacity="0.15"/>
+  <circle cx="400" cy="300" r="350" fill="white" fill-opacity="0.04"/>
+  <!-- Grid lines -->
+  <line x1="0" y1="150" x2="800" y2="150" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="0" y1="300" x2="800" y2="300" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="0" y1="450" x2="800" y2="450" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="200" y1="0" x2="200" y2="600" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="400" y1="0" x2="400" y2="600" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <line x1="600" y1="0" x2="600" y2="600" stroke="white" stroke-opacity="0.06" stroke-width="1"/>
+  <!-- Icon -->
+  <path d="M280 320 L400 160 L520 320 Z" fill="none" stroke="white" stroke-width="8" stroke-opacity="0.9"/>
+             <rect x="340" y="260" width="120" height="60" fill="white" fill-opacity="0.7"/>
+             <rect x="370" y="230" width="60" height="30" fill="white" fill-opacity="0.5"/>
+  <!-- Label -->
+  <text x="400" y="390" text-anchor="middle" font-size="24" font-weight="700" fill="white" fill-opacity="0.95" font-family="Arial,Helvetica,sans-serif">Suling</text>
+  <!-- Badge background -->
+  <rect x="310" y="412" width="180" height="30" rx="15" fill="white" fill-opacity="0.18"/>
+  <!-- Badge text -->
+  <text x="400" y="432" text-anchor="middle" font-size="13" fill="white" fill-opacity="0.85" font-family="Arial,Helvetica,sans-serif">Kota Bandung</text>
+</svg>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary - BandungVerse</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#6B21A8' }, fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/globals.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .leaflet-container { background: #faf5ff; font-family: inherit; }
+        .custom-popup-premium .leaflet-popup-content-wrapper { padding: 0; overflow: hidden; border-radius: 16px; background: transparent; box-shadow: none; }
+        .custom-popup-premium .leaflet-popup-content { margin: 0; line-height: normal; }
+        .custom-popup-premium .leaflet-popup-tip-container { display: none; }
+    </style>
+</head>
+<body class="bg-purple-50 h-screen w-full flex flex-col relative">
+
+    <nav class="absolute top-0 left-0 w-full z-20 p-6 pointer-events-none h-24">
+        <a href="index.html" class="pointer-events-auto absolute left-6 top-6">
+            <button class="bg-white p-3 rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4c1d95" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+        </a>
+    </nav>
+
+    <div class="flex-1 w-full flex flex-col md:flex-row relative min-h-0 overflow-hidden">
+        <!-- Map: 40vh on mobile, full height on desktop -->
+        <div class="h-[40vh] md:h-full md:flex-1 relative z-0">
+            <div id="map" class="w-full h-full"></div>
+            <div class="absolute left-1/2 -translate-x-1/2 top-6 pointer-events-auto flex items-center bg-white/95 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-xl border border-purple-200 shadow-sm z-[1000] w-max max-w-[90vw]">
+                <img src="assets/img/logo_bandung_verse.svg" alt="Bandung Verse" class="h-6 md:h-8 shrink-0 object-contain" onerror="this.style.display='none'" />
+                <div class="w-px h-5 md:h-6 bg-purple-200 mx-2 md:mx-3 shrink-0"></div>
+                <img src="assets/img/ic_peta.svg" alt="Peta" class="h-5 md:h-7 shrink-0 object-contain" onerror="this.style.display='none'" />
+            </div>
+        </div>
+
+        <!-- Sidebar: slides up as card on mobile, fixed width on desktop -->
+        <div class="w-full md:w-[420px] md:shrink-0 flex-1 md:flex-none md:h-full
+                    bg-[#f8f5ff] flex flex-col shadow-2xl z-10 relative
+                    rounded-t-[2rem] md:rounded-none -mt-6 md:mt-0 overflow-hidden">
+            <div id="mobile-drag-area" class="pt-3 pb-2 md:hidden cursor-grab flex justify-center items-center w-full relative z-20" style="touch-action: none;">
+                <div class="w-12 h-1.5 bg-purple-300/80 rounded-full"></div>
+            </div>
+            <div class="px-5 pb-2 pt-2 md:pt-5 relative">
+                <button id="btn-back" class="absolute left-5 top-5 text-gray-500 hover:text-purple-700 hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                </button>
+                <a href="explore.html" id="btn-explore" class="absolute left-5 top-5 text-gray-500 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </a>
+                <div class="flex flex-col items-center gap-2 mb-4">
+                    <img src="assets/img/ic_peta.svg" alt="Peta" class="h-7" onerror="this.style.display='none'" />
+                    <h2 class="font-bold text-purple-900 text-base md:text-lg">Rencana Perjalanan</h2>
+                </div>
+            </div>
+
+            <!-- View: Calendar -->
+            <div id="view-calendar" class="flex-1 flex flex-col px-5 overflow-y-auto hide-scrollbar pb-24 md:pb-6">
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-purple-100 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <button id="btn-prev-month" class="p-1 hover:bg-purple-100 rounded-lg text-purple-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <h3 id="calendar-month-year" class="font-bold text-purple-900">Bulan Tahun</h3>
+                        <button id="btn-next-month" class="p-1 hover:bg-purple-100 rounded-lg text-purple-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-7 gap-1 text-center mb-2">
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Min</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Sen</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Sel</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Rab</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Kam</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Jum</div>
+                        <div class="text-[10px] font-bold text-purple-400 uppercase">Sab</div>
+                    </div>
+                    
+                    <div id="calendar-grid" class="grid grid-cols-7 gap-1 text-center">
+                        <!-- Calendar injected here -->
+                    </div>
+                </div>
+
+                <div id="calendar-status" class="bg-white/60 backdrop-blur p-5 rounded-2xl border border-purple-50 flex-1 mb-6 flex flex-col items-center justify-center text-center">
+                    <!-- Status injected here (Rencana Tersedia / Belum ada) -->
+                </div>
+            </div>
+
+            <!-- View: Form -->
+            <div id="view-form" class="flex-1 flex flex-col px-5 md:px-8 overflow-y-auto hide-scrollbar hidden pb-24 md:pb-0">
+                <div class="mb-5">
+                    <label class="block text-xs font-semibold text-purple-900 mb-2">Tanggal</label>
+                    <input type="date" id="form-date" class="w-full bg-white px-4 py-3 rounded-xl shadow-sm text-sm outline-none text-gray-700 appearance-none" />
+                </div>
+                <div class="mb-5">
+                    <label class="block text-xs font-semibold text-purple-900 mb-2">Jam Mulai</label>
+                    <input type="time" id="form-time" value="09:00" class="w-full bg-white px-4 py-3 rounded-xl shadow-sm text-sm outline-none text-gray-700 appearance-none" />
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs font-semibold text-purple-900 mb-3">Maksimal destinasi</label>
+                    <div id="form-rating-btns" class="flex justify-between gap-2">
+                        <!-- Buttons injected here -->
+                    </div>
+                </div>
+                <div class="mb-8">
+                    <label class="block text-xs font-semibold text-purple-900 mb-3">Kategori</label>
+                    <div class="flex gap-3">
+                        <button class="cat-btn flex-1 py-3 rounded-xl font-semibold text-sm transition-all bg-white text-gray-800 shadow-sm border-2 border-transparent" data-cat="Kuliner">Kuliner</button>
+                        <button class="cat-btn flex-1 py-3 rounded-xl font-semibold text-sm transition-all bg-white text-gray-800 shadow-sm border-2 border-transparent" data-cat="Wisata">Wisata</button>
+                    </div>
+                </div>
+                <div class="mt-auto pb-6 pt-4">
+                    <button id="btn-generate" class="w-full bg-[#7c3aed] hover:bg-[#6b21a8] transition-colors text-white py-4 rounded-xl font-semibold shadow-md flex items-center justify-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                        Buat Rencana Perjalanan Otomatis
+                    </button>
+                </div>
+            </div>
+
+            <!-- View: Generated -->
+            <div id="view-generated" class="flex-1 flex flex-col overflow-hidden hidden">
+                <div class="px-5 mb-4 mt-2 md:mb-6 md:mt-4">
+                    <div id="generated-dates-row" class="flex gap-3 overflow-x-auto hide-scrollbar p-2 -m-2">
+                        <!-- Dates row injected here -->
+                    </div>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto px-5 pb-24 md:pb-4 hide-scrollbar relative">
+                    <div class="relative">
+                        <div class="absolute left-[7px] top-[48px] bottom-[48px] w-0.5 bg-purple-300 z-0"></div>
+                        <div id="generated-timeline" class="flex flex-col gap-6 relative z-10">
+                            <!-- Timeline items injected here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="px-5 py-4 bg-white/50 backdrop-blur-sm border-t border-purple-100 flex gap-3 shrink-0">
+                    <button id="btn-delete-itin" class="flex-1 bg-white hover:bg-gray-50 text-[#7c3aed] border border-purple-100 py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                        Hapus
+                    </button>
+                    <button id="btn-regenerate" class="flex-1 bg-[#7c3aed] hover:bg-[#6b21a8] text-white py-3 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-sm transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 8v6h6"/></svg>
+                        Buat Ulang
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/itinerary.js"></script>
+    <script src="js/mobile-drag.js"></script>
+    
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

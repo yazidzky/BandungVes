@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BandungVerse Map</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#6B21A8', 'primary-dark': '#581c87' }, fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/globals.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .leaflet-container { font-family: inherit; }
+        .custom-popup .leaflet-popup-content-wrapper { border-radius: 1rem; padding: 0; overflow: hidden; }
+        .custom-popup .leaflet-popup-content { margin: 0; width: 280px !important; }
+        .custom-popup .leaflet-popup-tip-container { display: none; }
+    </style>
+</head>
+<body class="min-h-screen bg-white">
+    
+    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-md z-50 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="text-gray-600 hover:text-primary transition">← Kembali</a>
+                <h1 class="text-2xl font-bold text-primary">BandungVerse Map</h1>
+            </div>
+            <a href="itinerary.html" class="bg-primary hover:bg-primary-dark text-white px-6 py-2 rounded-full font-semibold shadow-lg transition">
+                Buat Itinerary
+            </a>
+        </div>
+    </nav>
+
+    <div class="pt-20 flex">
+        <!-- Map Area -->
+        <div class="flex-1 h-[calc(100vh-80px)] z-0" id="map"></div>
+        
+        <!-- Sidebar -->
+        <div class="w-96 bg-white shadow-xl p-6 overflow-y-auto h-[calc(100vh-80px)] z-10">
+            <h2 class="text-2xl font-bold text-gray-900 mb-8">Pilih Filter</h2>
+            <div class="flex flex-wrap gap-3 mb-8" id="filter-buttons">
+                <!-- Filters injected via JS -->
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-4" id="result-count">
+                0 Tempat Ditemukan
+            </h3>
+            <div class="space-y-4" id="places-list">
+                <!-- List injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/map.js"></script>
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BandungVerse - Jelajahi sejarah, budaya, kuliner, dan destinasi terbaik Bandung dalam satu pengalaman interaktif.">
+    <title>BandungVerse - Jelajahi Bandung</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6B21A8',
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS to mimic global.css -->
+    <link rel="stylesheet" href="css/globals.css">
+    <script>
+        // Unregister any leftover Next.js Service Workers that might intercept and break vanilla HTML routing
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+    </script>
+    <style>
+        /* Hide scrollbar utility */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+        /* Ensure all white sections stay white on dark body */
+        #beranda, #beranda-desktop,
+        #wisata-container, #kuliner-container, #teknologi-container {
+            background-color: #ffffff;
+        }
+
+        .btn-ripple {
+            position: relative; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-ripple:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(107, 33, 168, 0.4); }
+        
+        /* Simple fade-in animation for jQuery to trigger */
+        .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+        .delay-400 { transition-delay: 400ms; }
+        .delay-500 { transition-delay: 500ms; }
+        .delay-600 { transition-delay: 600ms; }
+
+        /* Wisata cards: mobile 3-col grid overflow, desktop flex full-height */
+        .wisata-card-item { 
+            position: relative;
+            height: 260px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        /* Force hide mobile arrows on desktop regardless of position:fixed */
+        @media (min-width: 768px) {
+            #btn-wisata-prev-mobile,
+            #btn-wisata-next-mobile { display: none !important; }
+            .wisata-card-item { 
+                width: auto; 
+                flex: 1; 
+                height: 100%; 
+                border-radius: 16px;
+            }
+            #kuliner-container > section { padding-top: 64px !important; }
+        }
+        /* Mobile: kuliner needs top spacing for overflowing wisata cards */
+        @media (max-width: 767px) {
+            #kuliner-container > section { padding-top: 125px !important; }
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col pb-0 md:pb-0">
+
+    <!-- Navigation Desktop -->
+    <nav class="w-full bg-white/70 backdrop-blur-md fixed top-0 z-50 hidden md:flex justify-between items-center px-8 py-4 shadow-sm">
+        <div class="flex items-center">
+            <img src="assets/img/logo_bandung_verse.svg" alt="Bandung Verse" class="h-10" onerror="this.style.display='none'" />
+        </div>
+        <div class="flex items-center gap-6 text-sm font-semibold text-gray-600">
+            <a href="#wisata" class="nav-link-hover hover:text-[#4c1d95]" onclick="smoothScrollTo('wisata',event)">Wisata</a>
+            <a href="#kuliner" class="nav-link-hover hover:text-[#4c1d95]" onclick="smoothScrollTo('kuliner',event)">Kuliner</a>
+            <a href="#teknologi" class="nav-link-hover hover:text-[#4c1d95]" onclick="smoothScrollTo('teknologi',event)">Teknologi</a>
+            <a href="#budaya" class="nav-link-hover hover:text-[#4c1d95]" onclick="smoothScrollTo('budaya',event)">Budaya</a>
+        </div>
+    </nav>
+    <script>
+    function smoothScrollTo(id, e) {
+        e.preventDefault();
+        // Try anchor id first, fallback to container id
+        var el = document.getElementById(id) || document.getElementById(id + '-container');
+        if (!el) return;
+        var offset = 80;
+        var top = el.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+    }
+    </script>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex flex-col">
+
+        <!-- ===== HERO MOBILE (sesuai Figma) ===== -->
+        <section id="beranda" class="md:hidden w-full relative flex flex-col items-center px-5 pt-12 pb-0 overflow-hidden">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="assets/img/bgmenu_awaltampilan.jpg" class="w-full h-full object-cover" alt="Background" onerror="this.style.display='none'" />
+                <div class="absolute inset-0 bg-white/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-white/90 via-white/50 to-transparent"></div>
+            </div>
+
+            <!-- Logo BandungVerse -->
+            <div class="flex items-center mb-10 mt-2 relative z-10">
+                <img src="assets/img/logo_bandung_verse.svg" alt="Bandung Verse" class="h-10" onerror="this.style.display='none'" />
+            </div>
+
+            <!-- 2x2 Image Grid (gambar dari data wisata) -->
+            <div class="w-full grid grid-cols-2 gap-3 mb-10 relative z-10" id="hero-img-grid">
+                <div class="col-span-1 row-span-1">
+                    <div class="w-full h-44 rounded-3xl shadow-md bg-purple-200 animate-pulse" id="hero-img-0-wrap">
+                        <img id="hero-img-0" src="" class="w-full h-44 object-cover rounded-3xl shadow-md hidden" />
+                    </div>
+                </div>
+                <div class="col-span-1 row-span-1 mt-6">
+                    <div class="w-full h-44 rounded-3xl shadow-md bg-purple-200 animate-pulse" id="hero-img-1-wrap">
+                        <img id="hero-img-1" src="" class="w-full h-44 object-cover rounded-3xl shadow-md hidden" />
+                    </div>
+                </div>
+                <div class="col-span-1 row-span-1 -mt-4">
+                    <div class="w-full h-44 rounded-3xl shadow-md bg-purple-200 animate-pulse" id="hero-img-2-wrap">
+                        <img id="hero-img-2" src="" class="w-full h-44 object-cover rounded-3xl shadow-md hidden" />
+                    </div>
+                </div>
+                <div class="col-span-1 row-span-1 mt-2">
+                    <div class="w-full h-44 rounded-3xl shadow-md bg-purple-200 animate-pulse" id="hero-img-3-wrap">
+                        <img id="hero-img-3" src="" class="w-full h-44 object-cover rounded-3xl shadow-md hidden" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tagline -->
+            <h1 class="text-[2.1rem] font-extrabold text-gray-900 leading-tight mb-8 text-center w-full relative z-10">
+                Temukan Cerita di<br/><span class="text-[#5b21b6]">Setiap Sudut Kota</span>
+            </h1>
+
+            <!-- Signpost buttons — tiang di tengah, sisi tempel tiang = lurus -->
+            <div class="relative w-full flex flex-col items-center gap-3">
+                <!-- Tiang vertikal — dari atas sampai bawah container (= border ungu wisata) -->
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-2 bg-[#3b0764] z-0" style="border-radius:4px 4px 0 0;"></div>
+
+                <!-- "Jelajahi Bandung >" — kanan dari tiang, sisi kiri lurus -->
+                <div class="relative z-10 w-full flex justify-end pr-4">
+                    <a href="explore.html">
+                        <button class="bg-[#4c1d95] text-white font-bold px-7 py-3.5 shadow-lg flex items-center gap-2 text-[0.95rem]" style="border-radius:0 999px 999px 0;">
+                            Jelajahi Bandung
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </a>
+                </div>
+
+                <!-- "< Bandung Tempo Dulu" — kiri dari tiang, sisi kanan lurus -->
+                <div class="relative z-10 w-full flex justify-start pl-4">
+                    <a href="story.html">
+                        <button class="bg-[#4c1d95] text-white font-bold px-7 py-3.5 shadow-lg flex items-center gap-2 text-[0.95rem]" style="border-radius:999px 0 0 999px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                            Bandung Tempo Dulu
+                        </button>
+                    </a>
+                </div>
+
+                <!-- Spacer kecil setelah tombol -->
+                <div class="relative z-10 h-4"></div>
+            </div>
+        </section>
+
+        <!-- ===== HERO DESKTOP ===== -->
+        <section id="beranda-desktop" class="hidden md:flex relative w-full min-h-[90vh] items-center justify-between px-16 pt-20 overflow-hidden">
+            <!-- Background Image with Overlay -->
+            <div class="absolute inset-0 z-0">
+                <img src="assets/img/bgmenu_awaltampilan.jpg" class="w-full h-full object-cover" alt="Background" onerror="this.style.display='none'" />
+                <div class="absolute inset-0 bg-white/70"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent"></div>
+            </div>
+            
+            <div class="absolute right-0 top-0 w-1/2 h-full opacity-100 grid grid-cols-2 gap-4 p-8 pt-24 pointer-events-none z-10">
+                <div class="flex flex-col gap-4 mt-12">
+                    <div class="w-full h-48 rounded-[2rem] shadow-lg bg-purple-200/20 animate-pulse fade-in-up delay-100" id="desk-img-0-wrap">
+                        <img id="desk-img-0" src="" class="w-full h-48 object-cover rounded-[2rem] shadow-lg fade-in-up delay-100 hidden" />
+                    </div>
+                    <div class="w-full h-56 rounded-[2rem] shadow-lg bg-purple-200/20 animate-pulse fade-in-up delay-400" id="desk-img-1-wrap">
+                        <img id="desk-img-1" src="" class="w-full h-56 object-cover rounded-[2rem] shadow-lg fade-in-up delay-400 hidden" />
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="w-full h-64 rounded-[2rem] shadow-lg bg-purple-200/20 animate-pulse fade-in-up delay-200" id="desk-img-2-wrap">
+                        <img id="desk-img-2" src="" class="w-full h-64 object-cover rounded-[2rem] shadow-lg fade-in-up delay-200 hidden" />
+                    </div>
+                    <div class="w-full h-40 rounded-[2rem] shadow-lg bg-purple-200/20 animate-pulse fade-in-up delay-600" id="desk-img-3-wrap">
+                        <img id="desk-img-3" src="" class="w-full h-40 object-cover rounded-[2rem] shadow-lg fade-in-up delay-600 hidden" />
+                    </div>
+                </div>
+            </div>
+            <div class="z-20 max-w-xl fade-in-up visible relative">
+                <div class="inline-block px-4 py-2 bg-purple-100 text-primary font-semibold rounded-full mb-6 border border-purple-200">BandungVerse</div>
+                <h1 class="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-6">
+                    Temukan Cerita di<br/><span class="text-primary">Setiap Sudut Kota</span>
+                </h1>
+                <p class="text-lg text-gray-600 mb-8 max-w-md">Jelajahi sejarah, budaya, kuliner, dan destinasi terbaik Bandung dalam satu pengalaman interaktif.</p>
+                <div class="relative mt-12 w-fit">
+                    <!-- Tiang vertikal — di kiri tombol "Jelajahi" dan di kanan tombol "Tempo Dulu" -->
+                    <div class="absolute w-[8px] bg-purple-900 z-0" style="left:216px; top:-30px; height:300px; border-radius:4px 4px 0 0;"></div>
+                    <!-- "Jelajahi Bandung" — mulai dari tiang ke kanan, sisi kiri lurus (tempel tiang), sisi kanan pill -->
+                    <div class="flex w-[440px] relative z-10">
+                        <div class="w-[216px]"></div>
+                        <a href="explore.html">
+                            <button class="btn-ripple bg-[#4c1d95] text-white pl-7 pr-8 py-3 font-bold shadow-md flex items-center gap-3 whitespace-nowrap" style="border-radius:0 999px 999px 0;">
+                                Jelajahi Bandung
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                            </button>
+                        </a>
+                    </div>
+                    <!-- "< Bandung Tempo Dulu" — berakhir di tiang dari kiri, sisi kiri pill, sisi kanan lurus (tempel tiang) -->
+                    <div class="flex w-[440px] relative z-10 mt-2">
+                        <a href="story.html">
+                            <button class="btn-ripple bg-[#4c1d95] text-white pl-8 pr-7 py-3 font-bold shadow-md flex items-center gap-3 whitespace-nowrap" style="border-radius:999px 0 0 999px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                Bandung Tempo Dulu
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Sections Container -->
+        <!-- Desktop: tiang extension dari hero signpost ke section wisata -->
+        <div class="hidden md:block relative" style="height:0; overflow:visible; z-index:5;">
+            <div id="tiang-extension" style="position:absolute; width:8px; background:#3b0764; border-radius:0 0 4px 4px; top:0; left:0; height:60px; display:none;"></div>
+        </div>
+        <!-- Static anchor IDs for desktop nav — always available regardless of JS -->
+        <div id="wisata" style="height:0;"></div>
+        <div id="wisata-container" class="-mt-12 z-20 relative"></div>
+        <div id="kuliner" style="height:0;"></div>
+        <div id="kuliner-container"></div>
+        <div id="teknologi" style="height:0;"></div>
+        <div id="teknologi-container"></div>
+        <div id="budaya" style="height:0;"></div>
+        <div id="budaya-container"></div>
+
+    </main>
+
+    <!-- jQuery for DOM Manipulation -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        const FALLBACK_IMG = "assets/img/placeholders/wisata-1-0.svg";
+
+        $(document).ready(function() {
+            // Trigger entry animations
+            setTimeout(() => {
+                $('.fade-in-up').addClass('visible');
+            }, 100);
+
+            // Desktop: extend tiang from hero signpost to wisata section border
+            function positionTiangExtension() {
+                if (window.innerWidth < 768) return;
+                const tiangEl = document.getElementById('tiang-extension');
+                const heroSection = document.getElementById('beranda-desktop');
+                const wisataContainer = document.getElementById('wisata-container');
+                if (!tiangEl || !heroSection || !wisataContainer) return;
+
+                // Horizontal position: same as desktop tiang (left of hero content + 216px offset)
+                // Hero content starts at px-16 (64px), signpost at mt-12 from text start
+                // Tiang at left:216px within the signpost div which is within max-w-xl content
+                // Approximate: 64px (px-16) + tiang offset within content
+                const heroRect = heroSection.getBoundingClientRect();
+                const wisataRect = wisataContainer.getBoundingClientRect();
+                
+                // Find the actual tiang element in hero to get its x position
+                const heroTiang = heroSection.querySelector('.absolute.w-\\[8px\\]');
+                if (!heroTiang) { tiangEl.style.display = 'none'; return; }
+                
+                const tiangRect = heroTiang.getBoundingClientRect();
+                const containerRect = document.querySelector('.hidden.md\\:block.relative').getBoundingClientRect();
+                
+                // Position extension tiang
+                const leftPos = tiangRect.left - containerRect.left + (tiangRect.width / 2) - 4;
+                const gapHeight = wisataRect.top - heroRect.bottom + 48; // +48 for -mt-12 offset
+                
+                tiangEl.style.left = leftPos + 'px';
+                tiangEl.style.height = Math.max(gapHeight, 0) + 'px';
+                tiangEl.style.display = gapHeight > 0 ? 'block' : 'none';
+            }
+
+            setTimeout(positionTiangExtension, 200);
+            window.addEventListener('resize', positionTiangExtension);
+
+            // Initialize global IntersectionObserver BEFORE render functions are called
+            window.observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { root: null, rootMargin: '0px', threshold: 0.1 });
+
+            // Function to load and render Wisata Grid
+            function renderWisataGrid(onDone) {
+                $.getJSON('data/wisata.json?v=' + Date.now(), function(data) {
+                    const CARDS_PER_PAGE = 3;
+                    let page = 0;
+                    const totalPages = Math.ceil(data.length / CARDS_PER_PAGE);
+
+                    function renderPage() {
+                        // Both mobile and desktop show 3 per page
+                        const currentItems = data.slice(page * CARDS_PER_PAGE, page * CARDS_PER_PAGE + CARDS_PER_PAGE);
+                        
+                        function makeCard(wisata, index) {
+                            return `
+                                <a href="view.html?v=4&id=${wisata.id}" class="wisata-card-item group shadow-lg">
+                                    <img src="${wisata.image || FALLBACK_IMG}" alt="${wisata.nama}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onerror="this.onerror=null;this.src=FALLBACK_IMG"/>
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                                    <div class="absolute bottom-0 left-0 right-0 p-3 text-white">
+                                        <h3 class="font-bold text-[0.82rem] leading-tight mb-1">${wisata.nama}</h3>
+                                        <div class="flex items-center gap-1 text-[0.7rem] font-semibold text-white/80">
+                                            Eksplorasi
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        </div>
+                                    </div>
+                                </a>`;
+                        }
+
+                        const cardsHtml = currentItems.map((w, i) => makeCard(w, i)).join('');
+                        
+                        // Fill empty slots if needed
+                        let fillerHtml = '';
+                        if (currentItems.length < CARDS_PER_PAGE) {
+                            for (let i = 0; i < CARDS_PER_PAGE - currentItems.length; i++) {
+                                fillerHtml += `<div style="border-radius:16px;background:rgba(255,255,255,0.1);"></div>`;
+                            }
+                        }
+                        const fullHtml = cardsHtml + fillerHtml;
+
+                        $('#wisata-cards-mobile').html(fullHtml);
+                        $('#wisata-cards-desktop').html(fullHtml);
+
+                        // Pagination state
+                        $('#btn-wisata-prev, #btn-wisata-prev-mobile').prop('disabled', page === 0).css('opacity', page === 0 ? 0.5 : 1);
+                        $('#btn-wisata-next, #btn-wisata-next-mobile').prop('disabled', page === totalPages - 1).css('opacity', page === totalPages - 1 ? 0.5 : 1);
+                    }
+
+                    const sectionHtml = `
+                        <!-- Mobile: "Sedang Trending" -->
+                        <div class="md:hidden" style="position:relative; z-index:1;">
+                            <!-- Purple bg block: header + deskripsi saja, berakhir sebelum cards -->
+                            <div style="background:#4c1d95; padding:20px 0 20px 0;">
+                                <div class="flex items-center justify-between mb-3 px-4">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center shrink-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+                                        </div>
+                                        <span class="font-bold text-white text-[1rem]">Sedang Trending</span>
+                                    </div>
+                                    <a href="explore.html">
+                                        <button class="flex items-center gap-1.5 bg-white text-[#4c1d95] text-[0.78rem] font-bold px-4 py-2 rounded-full shadow-sm">
+                                            Eksplor Tren
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        </button>
+                                    </a>
+                                </div>
+                                <p class="text-white/85 text-[0.85rem] leading-relaxed px-4">Ikuti tren di Bandung dan temukan pengalaman seru yang sedang banyak diminati. Jangan sampai Kamu ketinggalan</p>
+                            </div>
+                            <div style="background:linear-gradient(to bottom, #4c1d95, white); height:195px; position:relative;">
+                                <div id="wisata-cards-mobile" class="grid gap-2 px-4" style="grid-template-columns:repeat(3,1fr); position:absolute; top:20px; left:0; right:0;">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile arrows — injected outside section, positioned by JS -->
+                        <button id="btn-wisata-prev-mobile" class="md:hidden" style="display:none; position:absolute; width:40px; height:40px; left:6px; background:white; color:#4c1d95; border-radius:50%; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+                        <button id="btn-wisata-next-mobile" class="md:hidden" style="display:none; position:absolute; right:6px; background:white; color:#4c1d95; border-radius:50%; width:40px; height:40px; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+
+                        <!-- Desktop: full wisata section -->
+                        <section class="hidden md:block relative w-full bg-gradient-to-r from-[#4c1d95] from-[32%] via-[#e9d5ff] to-white pt-16 pb-0" style="overflow:visible;">
+                            <div class="relative z-10 flex flex-row px-16 gap-8 max-w-[1400px] mx-auto fade-in-up items-end">
+                                <div class="w-[280px] shrink-0 text-white flex flex-col justify-between pb-16" style="min-height:320px;">
+                                    <div>
+                                        <div class="w-11 h-11 border border-white/30 rounded-xl flex items-center justify-center mb-5">
+                                            <img src="assets/img/ic_destinasi_wisata.svg" alt="Wisata" class="w-6 h-6" onerror="this.style.display='none'" />
+                                        </div>
+                                        <h2 class="text-[1.75rem] font-extrabold leading-snug mb-4">Destinasi<br/>Wisata</h2>
+                                        <p class="text-white/80 text-[0.85rem] leading-relaxed pr-4">Ikuti wisata di Bandung dan temukan pengalaman seru yang sedang banyak diminati. Jangan sampai Kamu ketinggalan</p>
+                                    </div>
+                                    <div class="flex flex-col gap-4 mt-6">
+                                        <div class="flex gap-3">
+                                            <button id="btn-wisata-prev" class="btn-ripple w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#4c1d95]">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                            </button>
+                                            <button id="btn-wisata-next" class="btn-ripple w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm text-[#4c1d95]">
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                            </button>
+                                        </div>
+                                        <a href="explore.html" class="block w-max">
+                                            <button class="btn-ripple-white bg-white text-[#4c1d95] font-bold text-sm px-6 py-3 rounded-full flex items-center gap-3 shadow-sm">Eksplor Wisata <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg></button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="flex-1" style="overflow:visible; margin-bottom:-48px;">
+                                    <div id="wisata-cards-desktop" class="flex gap-4" style="height:488px;"></div>
+                                </div>
+                            </div>
+                        </section>
+                    `;
+                    $('#wisata-container').html(sectionHtml).removeClass('-mt-12');
+
+                    // Desktop prev/next pagination
+                    $('#btn-wisata-prev').on('click', function() {
+                        if (page > 0) { page--; renderPageAndPositionArrows(); }
+                    });
+                    $('#btn-wisata-next').on('click', function() {
+                        if (page < totalPages - 1) { page++; renderPageAndPositionArrows(); }
+                    });
+
+                    // Mobile prev/next — same pagination + JS position arrows
+                    $(document).on('click', '#btn-wisata-prev-mobile', function() {
+                        if (page > 0) { page--; renderPageAndPositionArrows(); }
+                    });
+                    $(document).on('click', '#btn-wisata-next-mobile', function() {
+                        if (page < totalPages - 1) { page++; renderPageAndPositionArrows(); }
+                    });
+
+                    // After render, position arrows using fixed positioning (clip-proof)
+                    const origRenderPage = renderPage;
+                    function renderPageAndPositionArrows() {
+                        origRenderPage();
+                        setTimeout(function() {
+                            const grid = document.getElementById('wisata-cards-mobile');
+                            const p = document.getElementById('btn-wisata-prev-mobile');
+                            const n = document.getElementById('btn-wisata-next-mobile');
+                            if (!grid || !p || !n) return;
+
+                            // Hide on desktop
+                            if (window.innerWidth >= 768) {
+                                p.style.display = 'none';
+                                n.style.display = 'none';
+                                return;
+                            }
+
+                            const rect = grid.getBoundingClientRect();
+                            const cardH = 260;
+
+                            [p, n].forEach(function(btn) {
+                                btn.style.display = 'flex';
+                                btn.style.position = 'fixed';
+                                btn.style.top = rect.top + (cardH / 2) - 20 + 'px';
+                            });
+                            p.style.left = '6px';
+                            p.style.right = 'auto';
+                            n.style.right = '6px';
+                            n.style.left = 'auto';
+
+                            // Update on scroll
+                            window.removeEventListener('scroll', window._wisataArrowScroll || function(){});
+                            window._wisataArrowScroll = function() {
+                                const r2 = grid.getBoundingClientRect();
+                                const t = r2.top + (cardH / 2) - 20 + 'px';
+                                p.style.top = t;
+                                n.style.top = t;
+                            };
+                            window.addEventListener('scroll', window._wisataArrowScroll, { passive: true });
+
+                            // Also hide on resize to desktop
+                            window.removeEventListener('resize', window._wisataArrowResize || function(){});
+                            window._wisataArrowResize = function() {
+                                if (window.innerWidth >= 768) {
+                                    p.style.display = 'none';
+                                    n.style.display = 'none';
+                                } else {
+                                    p.style.display = 'flex';
+                                    n.style.display = 'flex';
+                                }
+                            };
+                            window.addEventListener('resize', window._wisataArrowResize);
+                        }, 80);
+                    }
+
+                    renderPageAndPositionArrows();
+                    window.observer.observe($('#wisata-container .fade-in-up')[0]);
+                    if (typeof onDone === 'function') onDone();
+                });
+            }
+
+            
+            // Function to load and render Kuliner Grid
+            function renderKulinerGrid(onDone) {
+                $.getJSON('data/kuliner.json?v=' + Date.now(), function(data) {
+                    const topKuliner = data.slice(0, 8); // Ambil 8 teratas
+                    let cardsHtml = '';
+                    
+                    topKuliner.forEach((item, i) => {
+                        cardsHtml += `
+                            <a href="view.html?v=4&id=${item.id}" class="group block fade-in-up delay-${i * 100}">
+                                <div class="relative rounded-3xl overflow-hidden aspect-square cursor-pointer shadow-sm hover:shadow-xl transition-shadow">
+                                    <img src="${item.image || FALLBACK_IMG}" alt="${item.nama}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null;this.src=FALLBACK_IMG"/>
+                                    <div class="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-3 py-1 rounded-full flex items-center gap-1 text-sm font-semibold">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-400"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                                        ${item.rating}
+                                    </div>
+                                    <div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                                        <h3 class="text-white font-bold text-lg leading-tight mb-1">${item.nama}</h3>
+                                        <p class="text-gray-300 text-xs flex items-center gap-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                            Bandung
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        `;
+                    });
+
+                    const sectionHtml = `
+                        <section class="py-6 md:py-16 px-4 md:px-16 bg-white">
+                            <!-- Mobile header -->
+                            <div class="flex items-center gap-2 mb-1 md:hidden">
+                                <div class="w-9 h-9 bg-[#4c1d95]/10 rounded-xl flex items-center justify-center">
+                                    <img src="assets/img/ic_kuliner.svg" alt="Kuliner" class="w-5 h-5" />
+                                </div>
+                                <span class="font-bold text-gray-900 text-[0.92rem]">Kuliner</span>
+                            </div>
+                            <p class="text-[0.72rem] text-gray-400 mb-4 md:hidden leading-relaxed">Nikmati beragam kuliner khas, dari street food legendaris hingga yang kekinian.</p>
+                            <!-- Desktop header -->
+                            <div class="hidden md:block text-center mb-12">
+                                <h2 class="text-3xl md:text-4xl font-bold mb-4 flex items-center justify-center gap-2">
+                                    <img src="assets/img/ic_kuliner.svg" alt="Kuliner" class="w-10 h-10" />
+                                    Kuliner
+                                </h2>
+                                <p class="text-gray-600 max-w-2xl mx-auto">Nikmati beragam kuliner khas, dari street food legendaris hingga yang kekinian.</p>
+                            </div>
+                            <!-- Grid: 2-col mobile, 3-col tablet, 4-col desktop -->
+                            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6">
+                                ${cardsHtml}
+                            </div>
+                            <!-- CTA -->
+                            <div class="mt-6 md:mt-12 flex justify-center">
+                                <a href="explore.html" class="inline-block">
+                                    <button class="btn-ripple bg-[#4c1d95] text-white px-8 py-3 rounded-full font-semibold inline-flex items-center gap-2 text-sm md:text-base">
+                                        Eksplor Kuliner
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                    </button>
+                                </a>
+                            </div>
+                        </section>
+                    `;
+                    $('#kuliner-container').html(sectionHtml);
+                    
+                    // Observe newly added elements
+                    $('#kuliner-container .fade-in-up').each(function() { window.observer.observe(this); });
+                    if (typeof onDone === 'function') onDone();
+                });
+            }
+
+            // Render Teknologi
+            function renderTeknologi(onDone) {
+                $.getJSON('data/teknologi.json?v=' + Date.now(), function(data) {
+                    const ptdiFront = data[3]?.gambar?.[0] || FALLBACK_IMG;
+                    const bosschaFront = data[1]?.gambar?.[0] || FALLBACK_IMG;
+                    const itbFront = data[0]?.gambar?.[0] || FALLBACK_IMG;
+                    const btpFront = data[2]?.gambar?.[0] || FALLBACK_IMG;
+
+                    const html = `
+                        <section class="py-6 md:py-16 px-4 md:px-8 bg-white">
+                            <!-- Mobile: 2-col asymmetric layout (gambar 2) -->
+                            <div class="md:hidden">
+                                <div class="grid grid-cols-2 gap-3">
+
+                                    <!-- KOLOM KIRI: gambar besar atas + purple card bawah -->
+                                    <div class="flex flex-col gap-3">
+                                        <!-- Gambar besar (Bosscha interior / data[1]) -->
+                                        <a href="view.html?v=4&id=${data[1]?.id || 'tekno-2'}" class="relative rounded-2xl overflow-hidden block" style="height:180px;">
+                                            <img src="${bosschaFront}" class="absolute inset-0 w-full h-full object-cover"/>
+                                        </a>
+                                        <!-- Purple card: ikon pesawat + deskripsi -->
+                                        <div class="bg-[#4c1d95] text-white rounded-2xl p-4 flex flex-col gap-3" style="min-height:160px;">
+                                            <img src="assets/img/ic_pesawat.svg" alt="Pesawat" class="w-10 h-10 opacity-90" />
+                                            <p class="text-[0.72rem] leading-relaxed text-white/90">
+                                                Perpaduan antara pendidikan, teknologi, dan kreativitas menjadikan Bandung sebagai kota yang terus berkembang dan berinovasi.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- KOLOM KANAN: label di atas + gambar PTDI + gambar Bosscha+CTA -->
+                                    <div class="flex flex-col gap-3">
+                                        <!-- Label: icon + teks judul -->
+                                        <div class="flex items-start gap-2 pt-1">
+                                            <div class="w-8 h-8 rounded-xl border border-[#4c1d95] flex items-center justify-center shrink-0">
+                                                <img src="assets/img/ic_teknologi.svg" alt="Teknologi" class="w-4 h-4" />
+                                            </div>
+                                            <p class="text-[0.72rem] font-semibold text-[#4c1d95] leading-snug">Perkembangan Teknologi<br/>& Potensi Modern</p>
+                                        </div>
+                                        <!-- Gambar PTDI/pesawat (dengan ring border ungu) -->
+                                        <a href="view.html?v=4&id=${data[3]?.id || 'tekno-4'}" class="relative rounded-2xl overflow-hidden block" style="height:130px; border: 2px solid #4c1d95;">
+                                            <img src="${ptdiFront}" class="absolute inset-0 w-full h-full object-cover"/>
+                                        </a>
+                                        <!-- Gambar Bosscha bawah + button Eksplor -->
+                                        <a href="teknologi.html" class="relative rounded-2xl overflow-hidden block" style="height:130px;">
+                                            <img src="${itbFront}" class="absolute inset-0 w-full h-full object-cover"/>
+                                            <div class="absolute inset-0 bg-black/40 flex items-end p-3">
+                                                <span class="inline-flex items-center gap-1 bg-white text-gray-900 text-[0.68rem] font-bold px-3 py-1.5 rounded-full shadow">
+                                                    Eksplor Teknologi
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Desktop: original 3-col layout -->
+                            <div class="hidden md:block">
+                            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+                                <!-- Col 1 -->
+                                <div class="flex flex-col gap-6 fade-in-up delay-100">
+                                    <a href="view.html?v=4&id=${data[3]?.id || 'tekno-4'}" class="block">
+                                        <div class="rounded-3xl h-[240px] cursor-pointer relative overflow-hidden shadow-md group">
+                                            <img src="${ptdiFront}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <span class="text-white text-sm font-semibold">Industri Penerbangan Dirgantara Indonesia</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="bg-[#4c1d95] text-white p-8 rounded-3xl shadow-md flex-1 flex flex-col justify-center">
+                                        <div class="mb-6"><img src="assets/img/ic_pesawat.svg" alt="Pesawat" class="w-20 h-20" /></div>
+                                        <p class="text-[1.05rem] leading-relaxed font-medium">
+                                            Perpaduan antara pendidikan, teknologi, dan kreativitas menjadikan Bandung sebagai kota yang terus berkembang dan berinovasi.
+                                        </p>
+                                    </div>
+                                </div>
+                                
+                                <!-- Col 2 -->
+                                <div class="flex flex-col gap-6 fade-in-up delay-300">
+                                    <a href="view.html?v=4&id=${data[1]?.id || 'tekno-2'}" class="block">
+                                        <div class="rounded-3xl h-[300px] cursor-pointer relative overflow-hidden shadow-md group">
+                                            <img src="${bosschaFront}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <span class="text-white text-sm font-semibold">Eksplor Peneropongan Bintang Bosscha</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <a href="view.html?v=4&id=${data[0]?.id || 'tekno-1'}" class="flex-1 block min-h-[200px]">
+                                        <div class="rounded-3xl h-full cursor-pointer relative overflow-hidden shadow-md group">
+                                            <img src="${itbFront}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+                                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                                <span class="text-white text-sm font-semibold">Lihat Detail Kampus ITB</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <!-- Col 3 -->
+                                <div class="flex flex-col gap-6 fade-in-up delay-500">
+                                    <div class="flex items-start gap-4 mb-2">
+                                        <div class="w-12 h-12 border border-[#4c1d95] rounded-xl flex items-center justify-center shrink-0">
+                                            <img src="assets/img/ic_teknologi.svg" alt="Teknologi" class="w-6 h-6" />
+                                        </div>
+                                        <h2 class="text-lg font-bold text-[#4c1d95] leading-snug">
+                                            Perkembangan Teknologi <br class="hidden lg:block" />& Potensi Modern
+                                        </h2>
+                                    </div>
+                                    <div class="rounded-3xl relative flex-1 min-h-[400px] overflow-hidden shadow-lg group">
+                                        <img src="${btpFront}" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                                            <div class="mt-auto self-end">
+                                                <a href="teknologi.html">
+                                                    <button class="btn-ripple-white bg-white text-gray-900 px-6 py-2.5 rounded-full font-bold shadow-xl flex items-center gap-2 text-sm hover:bg-gray-50 transition-colors">
+                                                        Eksplor Teknologi
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </section>
+                    `;
+                    $('#teknologi-container').html(html);
+                    $('#teknologi-container .fade-in-up').each(function() { window.observer.observe(this); });
+                    if (typeof onDone === 'function') onDone();
+                });
+            }
+
+            // Function to load and render Budaya
+            function renderBudaya(onDone) {
+                $.getJSON('data/budaya.json?v=' + Date.now(), function(data) {
+                    if (data.length === 0) { if (typeof onDone === 'function') onDone(); return; }
+                    let activeItem = 0;
+
+                    // Initialize HTML structure once
+                    const initialHtml = `
+                        <section class="text-white relative w-full fade-in-up" style="overflow:visible;">
+                            <!-- Mobile background: gradient -->
+                            <div class="absolute inset-0 z-0 md:hidden" style="background: linear-gradient(180deg, #ffffff 0%, #eaddf3 15%, #a481c4 35%, #5b2f8a 65%, #431f6a 100%);"></div>
+                            <!-- Desktop background: dark navy + blurred image overlay -->
+                            <div class="absolute inset-0 z-0 hidden md:block" style="background:#1a0b2e; overflow:hidden;">
+                                <img id="budaya-bg" src="" class="absolute inset-0 w-full h-full object-cover opacity-40 transition-opacity duration-700" />
+                                <div class="absolute inset-0 bg-[#2d0a4e]/80 pointer-events-none"></div>
+                                <div class="absolute inset-0 bg-gradient-to-b from-[#1a0b2e]/60 via-transparent to-[#1a0b2e]/80 pointer-events-none"></div>
+                            </div>
+
+                            <!-- Mobile Layout -->
+                            <div class="md:hidden relative z-10 pt-6 pb-28">
+
+                                <!-- Header: logo+label CENTER (NO up/down arrows) -->
+                                <div class="flex items-center justify-center mb-6 px-5">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-9 h-9 rounded-xl bg-[#4c1d95] flex items-center justify-center">
+                                            <img src="assets/img/ic_budaya_dan_tradisi.svg" alt="Budaya" class="w-5 h-5" style="filter:brightness(0) invert(1)" onerror="this.style.display='none'" />
+                                        </div>
+                                        <span class="text-[1rem] font-bold text-purple-700">Budaya</span>
+                                    </div>
+                                </div>
+
+                                <!-- Image stack: 3 cards menumpuk di belakang (visible semua) + main card + side arrows -->
+                                <div class="mb-6 px-5" style="overflow:visible;">
+                                    <!-- Container dengan height cukup untuk stack (300px card + 24px space di atas untuk stack effect) -->
+                                    <div class="relative" style="height:324px; overflow:visible;">
+                                        
+                                        <!-- Card 3 (paling belakang, paling kecil) -->
+                                        <div class="absolute left-0 right-0 overflow-hidden" style="z-index:0; border-radius:20px; height:300px; top:0; transform:scale(0.88) translateY(0px); transform-origin:top center; opacity:0.45; box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+                                            <img class="budaya-next-img w-full h-full object-cover" src="" />
+                                        </div>
+                                        
+                                        <!-- Card 2 (tengah) -->
+                                        <div class="absolute left-0 right-0 overflow-hidden" style="z-index:1; border-radius:20px; height:300px; top:0; transform:scale(0.94) translateY(8px); transform-origin:top center; opacity:0.65; box-shadow:0 4px 16px rgba(0,0,0,0.35);">
+                                            <img class="budaya-prev-img w-full h-full object-cover" src="" />
+                                        </div>
+                                        
+                                        <!-- Main card (depan, full size) -->
+                                        <div class="absolute left-0 right-0 overflow-hidden" style="z-index:2; border-radius:20px; height:300px; top:24px; box-shadow:0 8px 32px rgba(0,0,0,0.4);">
+                                            <a class="budaya-link block w-full h-full" href="#">
+                                                <img class="budaya-main-img w-full h-full object-cover transition-all duration-500" src="" />
+                                            </a>
+                                        </div>
+                                        
+                                        <!-- Left arrow — overflow keluar dari sisi kiri -->
+                                        <button class="budaya-up-btn absolute bg-white text-purple-700 rounded-full flex items-center justify-center shadow-xl active:scale-95 transition-transform" style="width:40px;height:40px;left:-20px;top:calc(24px + 150px - 20px);z-index:20;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                        </button>
+                                        <!-- Right arrow — overflow keluar dari sisi kanan -->
+                                        <button class="budaya-down-btn absolute bg-white text-purple-700 rounded-full flex items-center justify-center shadow-xl active:scale-95 transition-transform" style="width:40px;height:40px;right:-20px;top:calc(24px + 150px - 20px);z-index:20;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Content: title, pills, desc, CTA -->
+                                <div class="px-5">
+                                    <!-- Title -->
+                                    <h2 id="budaya-title" class="text-[2rem] font-extrabold text-white leading-tight mb-3 transition-all duration-500"></h2>
+                                    <!-- Category pills — outline white pill -->
+                                    <div id="budaya-cats" class="flex flex-wrap gap-2 mb-4"></div>
+                                    <!-- Description -->
+                                    <p id="budaya-desc" class="text-white/85 text-[0.88rem] leading-relaxed mb-6 line-clamp-4 transition-all duration-500"></p>
+                                    <!-- CTA — outline pill solid ungu bg -->
+                                    <a href="budaya.html">
+                                        <button class="bg-white text-purple-900 font-bold text-sm px-7 py-3 rounded-full inline-flex items-center gap-2 active:scale-[0.98] transition-transform">
+                                            Eksplor Budaya
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Layout -->
+                            <div class="hidden md:grid relative z-10 w-full" style="grid-template-columns:1fr 1fr; min-height:100vh;">
+
+                                <!-- Kiri: Info — padding penuh vertikal -->
+                                <div class="flex flex-col justify-center px-16 py-16">
+                                    <!-- Label -->
+                                    <div class="flex items-center gap-3 mb-5">
+                                        <div class="w-11 h-11 rounded-xl border border-white/30 flex items-center justify-center bg-white/10 shrink-0">
+                                            <img src="assets/img/ic_budaya_dan_tradisi.svg" alt="Budaya" class="w-7 h-7" onerror="this.style.display='none'" />
+                                        </div>
+                                        <span class="text-sm font-semibold text-white/70 tracking-wide">Budaya &amp; Tradisi</span>
+                                    </div>
+                                    <!-- Judul -->
+                                    <h2 id="budaya-title-desktop" class="text-5xl font-extrabold text-white mb-4 leading-tight transition-opacity duration-400"></h2>
+                                    <!-- Tags -->
+                                    <div id="budaya-cats-desktop" class="flex flex-wrap gap-2 mb-5"></div>
+                                    <!-- Deskripsi -->
+                                    <p id="budaya-desc-desktop" class="text-white/70 text-base leading-relaxed mb-7 line-clamp-4 transition-opacity duration-400"></p>
+                                    <!-- Thumbnails -->
+                                    <div id="budaya-thumbs-desktop" class="flex gap-3 mb-8 overflow-x-auto hide-scrollbar pb-1"></div>
+                                    <!-- CTA -->
+                                    <div>
+                                        <a href="budaya.html">
+                                            <button class="bg-white text-purple-900 font-bold px-8 py-3 rounded-full inline-flex items-center gap-2 shadow-lg hover:bg-purple-50 transition-colors">
+                                                Eksplor Budaya
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Kanan: Image stack — penuh tinggi, tidak terpotong -->
+                                <div class="flex flex-col" style="min-height:100vh; padding: 0; gap:0;">
+
+                                    <!-- Prev peek -->
+                                    <div class="shrink-0 overflow-hidden rounded-b-3xl mx-6" style="height:110px; margin-top:0;">
+                                        <img class="budaya-prev-img w-full h-full object-cover object-bottom transition-all duration-500" src="" />
+                                    </div>
+
+                                    <!-- Gap + Arrow up -->
+                                    <div class="flex justify-center items-center shrink-0" style="height:40px;">
+                                        <button class="budaya-up-btn w-10 h-10 bg-white text-purple-900 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Main image — flex-1 mengisi sisa ruang -->
+                                    <div class="flex-1 mx-6 rounded-3xl overflow-hidden shadow-2xl relative z-10" style="min-height:300px;">
+                                        <a class="budaya-link absolute inset-0 block" href="#">
+                                            <img class="budaya-main-img absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-105 cursor-pointer" src="" />
+                                        </a>
+                                    </div>
+
+                                    <!-- Gap + Arrow down -->
+                                    <div class="flex justify-center items-center shrink-0" style="height:40px;">
+                                        <button class="budaya-down-btn w-10 h-10 bg-white text-purple-900 rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Next peek -->
+                                    <div class="shrink-0 overflow-hidden rounded-t-3xl mx-6" style="height:110px; margin-bottom:0;">
+                                        <img class="budaya-next-img w-full h-full object-cover object-top transition-all duration-500" src="" />
+                                    </div>
+
+                                </div>
+
+                            </div><!-- end desktop -->
+                        </section>
+                    `;
+                    $('#budaya-container').html(initialHtml);
+                    $('#budaya-container .fade-in-up').each(function() { window.observer.observe(this); });
+
+                    function updateContent() {
+                        const item = data[activeItem];
+                        const img = item.image || (item.gambar && item.gambar[0]) || FALLBACK_IMG;
+
+                        const prevIdx = (activeItem - 1 + data.length) % data.length;
+                        const nextIdx = (activeItem + 1) % data.length;
+                        const prevItem = data[prevIdx];
+                        const nextItem = data[nextIdx];
+                        const prevImg = prevItem.image || (prevItem.gambar && prevItem.gambar[0]) || FALLBACK_IMG;
+                        const nextImg = nextItem.image || (nextItem.gambar && nextItem.gambar[0]) || FALLBACK_IMG;
+
+                        // Fade
+                        $('#budaya-title, #budaya-desc, .budaya-main-img, #budaya-bg, #budaya-title-desktop, #budaya-desc-desktop').css('opacity', 0);
+
+                        setTimeout(() => {
+                        // Update both mobile + desktop elements
+                        $('#budaya-bg').attr('src', img);
+                        $('.budaya-main-img').attr('src', img);
+                        $('.budaya-prev-img').attr('src', prevImg);
+                        $('.budaya-next-img').attr('src', nextImg);
+                        $('.budaya-link').attr('href', `view.html?v=4&id=${item.id}`);
+
+                            const titleTxt = item.nama || '';
+                            const descTxt = item.deskripsi || '';
+                            $('#budaya-title').text(titleTxt);
+                            $('#budaya-desc').text(descTxt);
+                            $('#budaya-title-desktop').text(titleTxt);
+                            $('#budaya-desc-desktop').text(descTxt);
+
+                            let catsHtml = '';
+                            let catsHtmlDesktop = '';
+                            if (item.kategori) {
+                                const cats = Array.isArray(item.kategori) ? item.kategori : item.kategori.split('/');
+                                cats.forEach(cat => {
+                                    // Mobile: solid white pill
+                                    catsHtml += `<span class="px-4 py-1.5 bg-white text-purple-900 rounded-full text-xs font-bold">${cat.trim()}</span>`;
+                                    // Desktop: solid white pill
+                                    catsHtmlDesktop += `<span class="px-4 py-1 bg-white text-purple-900 rounded-full text-sm font-bold">${cat.trim()}</span>`;
+                                });
+                            } else {
+                                catsHtml = `<span class="px-4 py-1.5 border border-white text-white rounded-full text-xs font-semibold">Budaya</span>`;
+                                catsHtmlDesktop = `<span class="px-4 py-1 bg-white text-purple-900 rounded-full text-sm font-bold">Budaya</span>`;
+                            }
+                            $('#budaya-cats').html(catsHtml);
+                            $('#budaya-cats-desktop').html(catsHtmlDesktop);
+
+                            $('#budaya-title, #budaya-desc, .budaya-main-img').css('opacity', 1);
+                            $('#budaya-title-desktop, #budaya-desc-desktop').css('opacity', 1);
+                            $('#budaya-bg').css('opacity', 0.4);
+                        }, 300);
+
+                        // Thumbnails (mobile + desktop)
+                        let thumbsHtml = '';
+                        for (let i = 0; i < 4; i++) {
+                            const idx = (activeItem + i) % data.length;
+                            const tItem = data[idx];
+                            const tImg = tItem.image || (tItem.gambar && tItem.gambar[0]) || FALLBACK_IMG;
+                            const isFirst = i === 0;
+                            thumbsHtml += `
+                                <button data-idx="${idx}" class="budaya-thumb w-16 h-16 md:w-20 md:h-20 shrink-0 rounded-2xl overflow-hidden border-2 transition-all ${isFirst ? 'border-white opacity-100' : 'border-transparent opacity-50 hover:opacity-100'}">
+                                    <img src="${tImg}" class="w-full h-full object-cover" />
+                                </button>
+                            `;
+                        }
+                        $('#budaya-thumbs, #budaya-thumbs-desktop').html(thumbsHtml);
+                    }
+
+                    // Attach events to static container
+                    $('#budaya-container').on('click', '.budaya-up-btn', function() {
+                        activeItem = (activeItem - 1 + data.length) % data.length;
+                        updateContent();
+                    });
+                    $('#budaya-container').on('click', '.budaya-down-btn', function() {
+                        activeItem = (activeItem + 1) % data.length;
+                        updateContent();
+                    });
+                    $('#budaya-container').on('click', '.budaya-thumb', function() {
+                        activeItem = parseInt($(this).attr('data-idx'));
+                        updateContent();
+                    });
+
+                    updateContent();
+                    if (typeof onDone === 'function') onDone();
+                });
+            } // end renderBudaya
+
+            // Call renders
+            function _sectionDone() {
+                // Activate fade-in-up globally since there's no splash screen
+                $('.fade-in-up').addClass('visible');
+            }
+
+            // Load hero images from real wisata data
+            $.getJSON('data/wisata.json?v=' + Date.now(), function(wisataData) {
+                const heroImgs = wisataData.slice(0, 4).map(w => w.image || (w.gambar && w.gambar[0]) || '');
+                // Mobile hero
+                heroImgs.forEach((src, i) => {
+                    if (!src) return;
+                    const img = document.getElementById('hero-img-' + i);
+                    const wrap = document.getElementById('hero-img-' + i + '-wrap');
+                    if (img && wrap) {
+                        img.onload = function() {
+                            wrap.classList.remove('animate-pulse', 'bg-purple-200');
+                            img.classList.remove('hidden');
+                        };
+                        img.src = src;
+                    }
+                });
+                // Desktop hero
+                heroImgs.forEach((src, i) => {
+                    if (!src) return;
+                    const img = document.getElementById('desk-img-' + i);
+                    const wrap = document.getElementById('desk-img-' + i + '-wrap');
+                    if (img && wrap) {
+                        img.onload = function() {
+                            wrap.classList.remove('animate-pulse', 'bg-purple-200');
+                            img.classList.remove('hidden');
+                        };
+                        img.src = src;
+                    }
+                });
+            });
+
+            renderWisataGrid(_sectionDone);
+            renderKulinerGrid(_sectionDone);
+            renderTeknologi(_sectionDone);
+            renderBudaya(_sectionDone);
+            setTimeout(_dismissSplash, 6000);
+        });
+    </script>
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

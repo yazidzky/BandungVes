@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Bandung - BandungVerse</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { primary: '#6B21A8' }, fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } } }
+        }
+    </script>
+    <link rel="stylesheet" href="css/globals.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow: hidden; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .leaflet-container { background: #faf5ff; font-family: inherit; }
+        .custom-popup-premium .leaflet-popup-content-wrapper { padding: 0; overflow: hidden; border-radius: 16px; background: transparent; box-shadow: none; }
+        .custom-popup-premium .leaflet-popup-content { margin: 0; line-height: normal; }
+        .custom-popup-premium .leaflet-popup-tip-container { display: none; }
+    </style>
+</head>
+<body class="bg-purple-50 h-screen w-full flex flex-col">
+
+    <!-- Navbar overlay -->
+    <nav class="absolute top-0 left-0 w-full z-20 p-6 pointer-events-none h-24">
+        <a href="index.html" class="pointer-events-auto absolute left-6 top-6">
+            <button class="bg-white p-3 rounded-full shadow-lg w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4c1d95" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-1 w-full flex flex-col md:flex-row relative min-h-0 overflow-hidden">
+        <!-- Map: 40vh on mobile, full height on desktop -->
+        <div class="h-[40vh] md:h-full md:flex-1 relative z-0">
+            <div id="map" class="w-full h-full"></div>
+            <div class="absolute left-1/2 -translate-x-1/2 top-6 pointer-events-auto flex items-center bg-white/95 backdrop-blur-md px-3 py-1.5 md:px-4 md:py-2 rounded-xl border border-purple-200 shadow-sm z-[1000] w-max max-w-[90vw]">
+                <img src="assets/img/logo_bandung_verse.svg" alt="Bandung Verse" class="h-6 md:h-8 shrink-0 object-contain" onerror="this.style.display='none'" />
+                <div class="w-px h-5 md:h-6 bg-purple-200 mx-2 md:mx-3 shrink-0"></div>
+                <a href="itinerary.html" class="hover:opacity-75 transition-opacity cursor-pointer shrink-0 flex items-center">
+                    <img src="assets/img/ic_peta.svg" alt="Rencana Perjalanan" class="h-5 md:h-7 object-contain" onerror="this.style.display='none'" />
+                </a>
+            </div>
+        </div>
+
+        <!-- Panel: slides up on mobile, sidebar on desktop -->
+        <div class="flex-1 md:w-[360px] lg:w-[400px] md:flex-none bg-[#f3e8ff] flex flex-col
+                    rounded-t-[2rem] md:rounded-none -mt-6 md:mt-0
+                    shadow-[0_-4px_20px_rgba(0,0,0,0.1)] md:shadow-[-10px_0_20px_rgba(0,0,0,0.05)]
+                    z-10 relative overflow-hidden">
+            <div id="mobile-drag-area" class="pt-3 pb-2 md:hidden cursor-grab flex justify-center items-center w-full relative z-20" style="touch-action: none;">
+                <div class="w-12 h-1.5 bg-purple-300/80 rounded-full"></div>
+            </div>
+            <div class="px-5 pb-2 pt-2 md:pt-5">
+
+                <div class="flex flex-col gap-3 mb-4 relative">
+                    <!-- Desktop location search -->
+                    <div class="relative items-center hidden md:flex">
+                        <input type="text" id="loc-search-input" placeholder="Posisi Anda..." class="w-full bg-white pl-4 pr-10 py-3 rounded-xl shadow-sm border-transparent focus:border-primary focus:ring-1 focus:ring-primary outline-none text-sm" />
+                        <button id="btn-get-location" class="absolute right-3 text-purple-600 hover:text-purple-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4 12H2"/><path d="M22 12h-2"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                        <div id="loc-suggestions" class="absolute top-full left-0 right-0 mt-1 bg-white rounded-xl shadow-lg border border-purple-100 overflow-hidden z-50 hidden"></div>
+                    </div>
+                    <!-- Mobile location search -->
+                    <div class="flex items-center gap-2 md:hidden">
+                        <div class="relative flex-1">
+                            <input type="text" id="loc-search-input-mobile" placeholder="Posisi Anda..." class="w-full bg-white pl-4 pr-4 py-3 rounded-xl shadow-sm border-transparent outline-none text-sm" />
+                        </div>
+                        <button id="btn-get-location-mobile" class="bg-white w-12 h-12 flex items-center justify-center rounded-xl shadow-sm text-purple-600 shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4 12H2"/><path d="M22 12h-2"/><circle cx="12" cy="12" r="3"/></svg>
+                        </button>
+                    </div>
+                    <!-- Place search -->
+                    <input type="text" id="place-search-input" placeholder="Cari tempat wisata atau kuliner..." class="w-full bg-white px-4 py-3 rounded-xl shadow-sm border-transparent outline-none text-sm" />
+                </div>
+
+                <h3 class="font-bold text-purple-900 mb-2 text-sm">Quick Filter</h3>
+                <div id="quick-filters" class="flex flex-wrap gap-2 mb-4"></div>
+
+                <div class="flex items-center gap-2 mb-2">
+                    <h3 class="font-bold text-purple-900 text-sm">Hasil Pencarian</h3>
+                    <span id="result-count" class="bg-[#7c3aed] text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center">0</span>
+                </div>
+            </div>
+
+            <!-- List -->
+            <div id="sidebar-list" class="flex-1 overflow-y-auto px-5 pb-24 md:pb-6 hide-scrollbar flex flex-col gap-3"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/explore.js"></script>
+    <script src="js/mobile-drag.js"></script>
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

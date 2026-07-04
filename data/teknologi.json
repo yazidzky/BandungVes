@@ -1,0 +1,188 @@
+[
+  {
+    "id": "teknologi-1",
+    "nama": "Institut Teknologi Bandung (ITB)",
+    "deskripsi": "Institut Teknologi Bandung (ITB) merupakan pionir pendidikan tinggi teknik di Indonesia yang didirikan sejak masa kolonial (1920). Sebagai pusat keunggulan ilmiah, ITB bukan sekadar institusi pendidikan, melainkan motor penggerak inovasi nasional melalui berbagai pusat penelitian unggulan, seperti Pusat Mikroelektronika, Pusat Kecerdasan Buatan (AI Center), serta Pusat Penelitian Teknologi Informasi dan Komunikasi (PPTIK). Kampus ini secara konsisten menelurkan riset-riset strategis mulai dari pengembangan radar pertahanan nasional, teknologi sel surya, baterai kendaraan listrik, hingga rekayasa genetika. Ekosistem akademisnya yang ketat membentuk budaya berpikir kritis dan analitis, menjadikannya kiblat utama bagi pengembangan sains dan teknologi terapan di Indonesia. Inovasi yang dihasilkan di ITB sering kali menjadi rujukan regulasi pemerintah maupun standardisasi industri nasional.",
+    "deskripsi_singkat": "Institut Teknologi Bandung (ITB) merupakan pionir pendidikan tinggi teknik di Indonesia yang didirikan sejak masa kolonial (1920). Sebagai pusat keunggulan ilmiah, ITB bukan sekadar institusi pendidikan, melainkan motor penggerak inovasi nasional melalui berbagai pusat penelitian unggulan, seperti P...",
+    "alamat": "Jl. Ganesha No.10, Lb. Siliwangi, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132 (Area kampus terbuka untuk umum, namun kunjungan ke laboratorium spesifik memerlukan izin resmi)",
+    "lokasi": "Jl. Ganesha No.10, Lb. Siliwangi, Kecamatan Coblong, Kota Bandung, Jawa Barat 40132 (Area kampus terbuka untuk umum, namun kunjungan ke laboratorium spesifik memerlukan izin resmi)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHIAQP33HonktvXUiry7ganbsWcVDRw38hubnyUvm9xTCe2WVgzsGrUDWahwbjVcQ-8V7Y_7arQFkUDnRHPKSBKzPHgbHyZ_T0T0X5hjZReeVBd6UbX5fxaLAlgEtdEZf3H1x9y=s1920-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHIAQP33HonktvXUiry7ganbsWcVDRw38hubnyUvm9xTCe2WVgzsGrUDWahwbjVcQ-8V7Y_7arQFkUDnRHPKSBKzPHgbHyZ_T0T0X5hjZReeVBd6UbX5fxaLAlgEtdEZf3H1x9y=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEWkFsvIhiuyV3z8x01kysLqzhZlSvMjUHO6upOgNRYKnx5KPj8kV31xgU8uKQm4YMyvcLYnUms6UzCf2AUW2ca0mr8XeqxmKqgKB3coRlJOq32OY-3P53hxfJ8-12A4ggCmAqF=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFyxpyRNoHjiRyzZXQCDG6TcxZiGYpRbW776AchtlZ8DXvMlKk2gRMX8Q2eDgHOyrlflPrLdkqR50sK2IpUXqoJPBUJJgIUl2jYEIfpP5LHvs9qaWsOunML7B14gT71pu2NB2gP=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE9j5BlDHu10xC37obdlF9GiwaebgiNqZa5MaBoAncd9SHfZMG-nK6L7MP3lievUanEKhxDMKqC4m_ZKVE3Kg-yQnHmOIQtzEHtO3VfBfHaspF39Wgdvqf5UhjFSeQr6igGhGU=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF1A-7fJ8YoCVaA9bkTvYo1W7VGjB6aM-7_cDJ3QnDitxgrUzkpM1t9m-I3r1dkGZ-hd8Ac9TY9h6sWHmKsAbeSoyUEabZDoF35x6GBxZ0Q0FUIDnFrmbvX0uFIUqC1ZPSmSQ6bwg=s1920-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHIAQP33HonktvXUiry7ganbsWcVDRw38hubnyUvm9xTCe2WVgzsGrUDWahwbjVcQ-8V7Y_7arQFkUDnRHPKSBKzPHgbHyZ_T0T0X5hjZReeVBd6UbX5fxaLAlgEtdEZf3H1x9y=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEWkFsvIhiuyV3z8x01kysLqzhZlSvMjUHO6upOgNRYKnx5KPj8kV31xgU8uKQm4YMyvcLYnUms6UzCf2AUW2ca0mr8XeqxmKqgKB3coRlJOq32OY-3P53hxfJ8-12A4ggCmAqF=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFyxpyRNoHjiRyzZXQCDG6TcxZiGYpRbW776AchtlZ8DXvMlKk2gRMX8Q2eDgHOyrlflPrLdkqR50sK2IpUXqoJPBUJJgIUl2jYEIfpP5LHvs9qaWsOunML7B14gT71pu2NB2gP=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE9j5BlDHu10xC37obdlF9GiwaebgiNqZa5MaBoAncd9SHfZMG-nK6L7MP3lievUanEKhxDMKqC4m_ZKVE3Kg-yQnHmOIQtzEHtO3VfBfHaspF39Wgdvqf5UhjFSeQr6igGhGU=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAF1A-7fJ8YoCVaA9bkTvYo1W7VGjB6aM-7_cDJ3QnDitxgrUzkpM1t9m-I3r1dkGZ-hd8Ac9TY9h6sWHmKsAbeSoyUEabZDoF35x6GBxZ0Q0FUIDnFrmbvX0uFIUqC1ZPSmSQ6bwg=s1920-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHIAQP33HonktvXUiry7ganbsWcVDRw38hubnyUvm9xTCe2WVgzsGrUDWahwbjVcQ-8V7Y_7arQFkUDnRHPKSBKzPHgbHyZ_T0T0X5hjZReeVBd6UbX5fxaLAlgEtdEZf3H1x9y=s1920-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  },
+  {
+    "id": "teknologi-2",
+    "nama": "Observatorium Bosscha",
+    "deskripsi": "Berdiri sejak tahun 1923 di kawasan Lembang, Observatorium Bosscha adalah lembaga penelitian astronomi tertua dan salah satu yang paling modern di Asia Tenggara pada zamannya. Dikelola oleh ITB, Bosscha menjadi pusat kontribusi data astronomi internasional, khususnya untuk pengamatan langit belahan bumi selatan. Fasilitas ini dilengkapi dengan berbagai teleskop mutakhir, termasuk Teleskop Refraktor Ganda Zeiss yang ikonik, Teleskop Bamberg, dan teleskop robotik modern yang terintegrasi dengan sistem digital untuk pelacakan objek luar angkasa, asteroid dekat bumi, serta pemantauan aktivitas matahari. Selain fungsi riset murninya dalam astrofisika dan kosmologi, Bosscha memegang peranan krusial dalam penentuan hilal berbasis astronomi di Indonesia serta menjadi pusat edukasi sains populer untuk menumbuhkan minat generasi muda terhadap astronomi.",
+    "deskripsi_singkat": "Berdiri sejak tahun 1923 di kawasan Lembang, Observatorium Bosscha adalah lembaga penelitian astronomi tertua dan salah satu yang paling modern di Asia Tenggara pada zamannya. Dikelola oleh ITB, Bosscha menjadi pusat kontribusi data astronomi internasional, khususnya untuk pengamatan langit belahan ...",
+    "alamat": "Jl. Peneropongan Bintang No.45, Lembang, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391 (Dapat dikunjungi publik melalui program kunjungan siang/malam dengan reservasi terlebih dahulu)",
+    "lokasi": "Jl. Peneropongan Bintang No.45, Lembang, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391 (Dapat dikunjungi publik melalui program kunjungan siang/malam dengan reservasi terlebih dahulu)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEbDMadycK5Mc-_zRq9OzstW0uh5XWYeKSpA8T3QYaUsbp52__YoJvC-WmdZ15ikzjORIgFew7yrqyc5CvkdIF9MYCNVrYHCF4dW8FHEDLIQ5D2ECkhNE-Fdiv0gcoOxsWxM5qX=s1920-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEbDMadycK5Mc-_zRq9OzstW0uh5XWYeKSpA8T3QYaUsbp52__YoJvC-WmdZ15ikzjORIgFew7yrqyc5CvkdIF9MYCNVrYHCF4dW8FHEDLIQ5D2ECkhNE-Fdiv0gcoOxsWxM5qX=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEpZ7fI3vIV6f-GNmv4X0vAZSrtdN6ttuvdai5DFhDQimjvZtVEK45mqOdQrqKjGoUWZ4NTvNQHe6Ywp_oYR1kyA2AehhNaKabjONDpIvneGHlCMzT_m4K5EiXOQABnLFiAC3yQlQ=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEtcpTppHD0tfyf4-prXBXXJszQMbIcEyIiXUeSKv_H2nd9tEmlem9nz1C-EXA3U_hA5mAU-A6ZtiK35QS65BYKWeXaLhyQg1WyL6cuuJisDpPWfkrDwYgsm1joMLjEsjRmRxeVrJcBlQc=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAExdAPudHupD7nJXFE-wRbOtOSLw1AFyzdoO6z8yCkWQNH2rTR5ocS2AnRBOs0yVg-cZ-whtdGGcLEl11cC45USgbltuCvqHXjo69FKEzKiSEDTbd82oaajDSt80bV_AYH_0ZU=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE3LsNnqr9P8BIi53sja0urdgYrZosftdmzHSLcwcokpsvK6om3rmeK8FDGcyk69HYx2lqs7qfPQA8tY_AffHSnH7h_TVHDIQBRjU4jNcWOpGiO2aQnb72xQT20P5QzoIbcc8MyVCxSeIf8=s1920-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEbDMadycK5Mc-_zRq9OzstW0uh5XWYeKSpA8T3QYaUsbp52__YoJvC-WmdZ15ikzjORIgFew7yrqyc5CvkdIF9MYCNVrYHCF4dW8FHEDLIQ5D2ECkhNE-Fdiv0gcoOxsWxM5qX=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEpZ7fI3vIV6f-GNmv4X0vAZSrtdN6ttuvdai5DFhDQimjvZtVEK45mqOdQrqKjGoUWZ4NTvNQHe6Ywp_oYR1kyA2AehhNaKabjONDpIvneGHlCMzT_m4K5EiXOQABnLFiAC3yQlQ=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEtcpTppHD0tfyf4-prXBXXJszQMbIcEyIiXUeSKv_H2nd9tEmlem9nz1C-EXA3U_hA5mAU-A6ZtiK35QS65BYKWeXaLhyQg1WyL6cuuJisDpPWfkrDwYgsm1joMLjEsjRmRxeVrJcBlQc=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAExdAPudHupD7nJXFE-wRbOtOSLw1AFyzdoO6z8yCkWQNH2rTR5ocS2AnRBOs0yVg-cZ-whtdGGcLEl11cC45USgbltuCvqHXjo69FKEzKiSEDTbd82oaajDSt80bV_AYH_0ZU=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAE3LsNnqr9P8BIi53sja0urdgYrZosftdmzHSLcwcokpsvK6om3rmeK8FDGcyk69HYx2lqs7qfPQA8tY_AffHSnH7h_TVHDIQBRjU4jNcWOpGiO2aQnb72xQT20P5QzoIbcc8MyVCxSeIf8=s1920-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEbDMadycK5Mc-_zRq9OzstW0uh5XWYeKSpA8T3QYaUsbp52__YoJvC-WmdZ15ikzjORIgFew7yrqyc5CvkdIF9MYCNVrYHCF4dW8FHEDLIQ5D2ECkhNE-Fdiv0gcoOxsWxM5qX=s1920-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  },
+  {
+    "id": "teknologi-3",
+    "nama": "Bandung Techno Park (BTP)",
+    "deskripsi": "Bandung Techno Park (BTP) yang diinisiasi oleh Telkom University merupakan kawasan inkubasi bisnis dan inovasi teknologi yang menjembatani dunia akademis (quadruple helix) dengan industri komersial. BTP berfokus pada pengembangan teknologi informasi dan komunikasi (TIK), Internet of Things (IoT), solusi digital, serta manufaktur pintar. Kawasan ini menyediakan fasilitas lengkap bagi para inovator dan pelaku startup, mulai dari laboratorium fabrikasi hardware, uji coba perangkat telekomunikasi, hingga ruang kerja bersama (coworking space). Melalui program inkubasi dan akselerasi yang sistematis, BTP membantu mengubah purwarupa (prototype) akademis menjadi produk komersial yang siap bersaing di pasar nasional maupun global, sekaligus memfasilitasi perlindungan Hak Kekayaan Intelektual (HKI) bagi para inventor.",
+    "deskripsi_singkat": "Bandung Techno Park (BTP) yang diinisiasi oleh Telkom University merupakan kawasan inkubasi bisnis dan inovasi teknologi yang menjembatani dunia akademis (quadruple helix) dengan industri komersial. BTP berfokus pada pengembangan teknologi informasi dan komunikasi (TIK), Internet of Things (IoT), so...",
+    "alamat": "Jl. Telekomunikasi No.1, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40257 (Kawasan Bandung Selatan)",
+    "lokasi": "Jl. Telekomunikasi No.1, Sukapura, Kec. Dayeuhkolot, Kabupaten Bandung, Jawa Barat 40257 (Kawasan Bandung Selatan)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEkmA2OUnKjXQtwtGITzD3N9_7RCzeaDNYLMXZysqNlKaEE3eC2ZtiB6qmhRqKF2ba70P8lKgZ74fp2XZRJDk9cN8_kNGkpMiMtEZIQe_KpTA9vkDVs5FiGbq3F0PaYQ3xrJMnO=s1920-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEkmA2OUnKjXQtwtGITzD3N9_7RCzeaDNYLMXZysqNlKaEE3eC2ZtiB6qmhRqKF2ba70P8lKgZ74fp2XZRJDk9cN8_kNGkpMiMtEZIQe_KpTA9vkDVs5FiGbq3F0PaYQ3xrJMnO=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAG5DLu9K-A_FyuvEFZnRcjYO9h6rmlLEV2tp7KXlIVYk-wfVzTu_OidZuHvMCPkHsym-Y1IhNyyA0z2H1x4E11bijxzLJpTM5geX_05xo9VpI2yENscxEXi8-uQGVX3yWPOXdglOg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFn36dvkXXAVSKJS0GGvZNFkZk49zjQV-eM16Wj4uztqQngjPoylGL9n3FRJzMUL5_P6dbDpO-_h4UWMEpr_t8h2zX0f3Mxk9tu7E0wVtdDejUZlN9rZJ2uNUzeEAwi35gwG-dO=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEYXwyPgWO_ykWurUCwdflkIvp09GLXG-K9X2VvEYsHO5yhqaBnQiGTOTFOKP7Nlh2zdz3PLq7YMR9TdGQixkwUK1xId_PjdEJ7FsnpmcwlunBaHaFlsyPF1tAFcTKzYIOncdfg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFRYx0022_BcGax6ox52LSb7PhMGXjJ2idmqdzh3RcCPtgQ5Nj6VV6BjrLjHJj8vqoIEAXQV0jMBKslLynqH_QzDlKfLOGJkSYL8rDYeNs3l0KH_OxHr2orvMIeBX-Ie_AuJGoRmw=s1920-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEkmA2OUnKjXQtwtGITzD3N9_7RCzeaDNYLMXZysqNlKaEE3eC2ZtiB6qmhRqKF2ba70P8lKgZ74fp2XZRJDk9cN8_kNGkpMiMtEZIQe_KpTA9vkDVs5FiGbq3F0PaYQ3xrJMnO=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAG5DLu9K-A_FyuvEFZnRcjYO9h6rmlLEV2tp7KXlIVYk-wfVzTu_OidZuHvMCPkHsym-Y1IhNyyA0z2H1x4E11bijxzLJpTM5geX_05xo9VpI2yENscxEXi8-uQGVX3yWPOXdglOg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFn36dvkXXAVSKJS0GGvZNFkZk49zjQV-eM16Wj4uztqQngjPoylGL9n3FRJzMUL5_P6dbDpO-_h4UWMEpr_t8h2zX0f3Mxk9tu7E0wVtdDejUZlN9rZJ2uNUzeEAwi35gwG-dO=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEYXwyPgWO_ykWurUCwdflkIvp09GLXG-K9X2VvEYsHO5yhqaBnQiGTOTFOKP7Nlh2zdz3PLq7YMR9TdGQixkwUK1xId_PjdEJ7FsnpmcwlunBaHaFlsyPF1tAFcTKzYIOncdfg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFRYx0022_BcGax6ox52LSb7PhMGXjJ2idmqdzh3RcCPtgQ5Nj6VV6BjrLjHJj8vqoIEAXQV0jMBKslLynqH_QzDlKfLOGJkSYL8rDYeNs3l0KH_OxHr2orvMIeBX-Ie_AuJGoRmw=s1920-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEkmA2OUnKjXQtwtGITzD3N9_7RCzeaDNYLMXZysqNlKaEE3eC2ZtiB6qmhRqKF2ba70P8lKgZ74fp2XZRJDk9cN8_kNGkpMiMtEZIQe_KpTA9vkDVs5FiGbq3F0PaYQ3xrJMnO=s1920-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  },
+  {
+    "id": "teknologi-4",
+    "nama": "PT Dirgantara Indonesia (PTDI)",
+    "deskripsi": "PT Dirgantara Indonesia (PTDI) merupakan satu-satunya industri dirgantara di kawasan Asia Tenggara yang memiliki kemampuan manufaktur, desain, dan pengembangan pesawat terbang terintegrasi. Sebagai aset teknologi strategis nasional, PTDI telah memproduksi berbagai jenis pesawat terbang dan helikopter, seperti CN235, NC212i, dan pesawat turboprop sipil N219 \"Nurtanio\" yang murni didesain oleh insinyur Indonesia. Perusahaan ini menerapkan standar teknologi tinggi dalam rekayasa struktur pesawat, pengujian aerodinamika melalui terowongan angin (wind tunnel), serta integrasi sistem avionik modern. Selain memproduksi pesawat utuh, PTDI juga menjadi pemasok komponen global untuk raksasa dirgantara dunia seperti Airbus dan Boeing, membuktikan bahwa kompetensi teknologi manufaktur presisi tinggi Bandung telah diakui di level internasional.",
+    "deskripsi_singkat": "PT Dirgantara Indonesia (PTDI) merupakan satu-satunya industri dirgantara di kawasan Asia Tenggara yang memiliki kemampuan manufaktur, desain, dan pengembangan pesawat terbang terintegrasi. Sebagai aset teknologi strategis nasional, PTDI telah memproduksi berbagai jenis pesawat terbang dan helikopte...",
+    "alamat": "Jalan Pajajaran No.154, Husen Sastranegara, Kec. Cicendo, Kota Bandung, Jawa Barat 40174 (Kunjungan publik tersedia melalui program wisata edukasi \"DI Edutainment\" pada akhir pekan)",
+    "lokasi": "Jalan Pajajaran No.154, Husen Sastranegara, Kec. Cicendo, Kota Bandung, Jawa Barat 40174 (Kunjungan publik tersedia melalui program wisata edukasi \"DI Edutainment\" pada akhir pekan)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGEy5_Z1JkOi88-6B0LilxZDtRuBaE83Hj0pbCc8gNeL9qKWnwFy0v_TPA98Hq8qmmvzzwRKrd3MGY-C0Q_EZDSv8FcXwToQgDq01Jkcwji1dxJqH6na4GPqDSfm39OVpnY-u1Fxg=s1920-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGEy5_Z1JkOi88-6B0LilxZDtRuBaE83Hj0pbCc8gNeL9qKWnwFy0v_TPA98Hq8qmmvzzwRKrd3MGY-C0Q_EZDSv8FcXwToQgDq01Jkcwji1dxJqH6na4GPqDSfm39OVpnY-u1Fxg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFnU-2EjwSyRVjcdVOQAAyoKKpLEcI7vvHMXsAMswdMurQZkhmT2naoQZTxKW-Ov_PGtxbaU4YkIJcQ6HkscIJlW5VvixS6HjUqxQJG5HTtgNQoE3U7T2iFAm9Tx9RdHVYLxCY=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHC-SFBzGoEtxOwdFccydL31W8zom8eCsPvWW53Po64KLb-TpbqbflO5DQWC4XIxG_In1584NoQnKMZrkU51NcwLQoQW-OHuvHT1kISZ2kI1WSq6h6m9hcSTDKHt9QnhNHUdj9bcQ=s515-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHHZmCqxAScdWD-sWK9MS5L3qPxpmMS8DVE1VBMNFIIWSUncgKW0MJeLwzbm2Of5qT_3DORArMc0Ceb4T6urAKaF4fSmACk9Egip2X0k0qldwSsQlzfHJ4P6tDC0cV5HWYQNW98zQ=s677-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGSsA4Sf0VNLLT0HLwYp_PG77C2f56TV7FQP58lHVlyst_vUyhraKmdGfqivciuURobf64bWFew1QcAjmJrY_HnNdX3G4Rw2PNKJXeyHaTR2avpf5BbjIZYIE9teoX0L6pGBcQ=s516-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGEy5_Z1JkOi88-6B0LilxZDtRuBaE83Hj0pbCc8gNeL9qKWnwFy0v_TPA98Hq8qmmvzzwRKrd3MGY-C0Q_EZDSv8FcXwToQgDq01Jkcwji1dxJqH6na4GPqDSfm39OVpnY-u1Fxg=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFnU-2EjwSyRVjcdVOQAAyoKKpLEcI7vvHMXsAMswdMurQZkhmT2naoQZTxKW-Ov_PGtxbaU4YkIJcQ6HkscIJlW5VvixS6HjUqxQJG5HTtgNQoE3U7T2iFAm9Tx9RdHVYLxCY=s1920-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHC-SFBzGoEtxOwdFccydL31W8zom8eCsPvWW53Po64KLb-TpbqbflO5DQWC4XIxG_In1584NoQnKMZrkU51NcwLQoQW-OHuvHT1kISZ2kI1WSq6h6m9hcSTDKHt9QnhNHUdj9bcQ=s515-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHHZmCqxAScdWD-sWK9MS5L3qPxpmMS8DVE1VBMNFIIWSUncgKW0MJeLwzbm2Of5qT_3DORArMc0Ceb4T6urAKaF4fSmACk9Egip2X0k0qldwSsQlzfHJ4P6tDC0cV5HWYQNW98zQ=s677-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGSsA4Sf0VNLLT0HLwYp_PG77C2f56TV7FQP58lHVlyst_vUyhraKmdGfqivciuURobf64bWFew1QcAjmJrY_HnNdX3G4Rw2PNKJXeyHaTR2avpf5BbjIZYIE9teoX0L6pGBcQ=s516-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGEy5_Z1JkOi88-6B0LilxZDtRuBaE83Hj0pbCc8gNeL9qKWnwFy0v_TPA98Hq8qmmvzzwRKrd3MGY-C0Q_EZDSv8FcXwToQgDq01Jkcwji1dxJqH6na4GPqDSfm39OVpnY-u1Fxg=s1920-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  },
+  {
+    "id": "teknologi-5",
+    "nama": "PT Pindad",
+    "deskripsi": "PT Pindad adalah badan usaha milik negara yang bergerak di bidang manufaktur produk militer dan komersial berkemampuan teknologi tinggi. Dalam sektor pertahanan, Pindad memproduksi senjata api presisi, amunisi berbagai kaliber, serta kendaraan tempur lapis baja seperti Anoa, Komodo, dan Medium Tank Harimau yang dikembangkan melalui kemitraan internasional. Penguasaan teknologi di Pindad mencakup rekayasa material canggih, metalurgi, mekanika presisi, serta sistem kontrol penembakan berbasis komputer. Tidak hanya terbatas pada alat utama sistem persenjataan (alutsista), Pindad juga mendiversifikasi potensi teknologinya untuk mendukung sektor sipil melalui manufaktur alat berat (eksavator), generator listrik berkekuatan besar, serta komponen perkeretaapian nasional.",
+    "deskripsi_singkat": "PT Pindad adalah badan usaha milik negara yang bergerak di bidang manufaktur produk militer dan komersial berkemampuan teknologi tinggi. Dalam sektor pertahanan, Pindad memproduksi senjata api presisi, amunisi berbagai kaliber, serta kendaraan tempur lapis baja seperti Anoa, Komodo, dan Medium Tank ...",
+    "alamat": "Jl. Terusan Gatot Subroto No.517, Sukapura, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40285 (Merupakan objek vital nasional, kunjungan publik terbatas dan memerlukan izin resmi/keperluan kedinasan)",
+    "lokasi": "Jl. Terusan Gatot Subroto No.517, Sukapura, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40285 (Merupakan objek vital nasional, kunjungan publik terbatas dan memerlukan izin resmi/keperluan kedinasan)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtZNYGdm1swtx7nERPMB_6Y7jzQcwK2HD_h77KjQHg8wDxdCtngAikYo-zSoCNbA7APsGpuxHTp8-fBBotD-biDF6DNWnZDgEPauQoxIiTG4dYZUjPMDeQfCslsujX-Vc2sbzr=s387-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtZNYGdm1swtx7nERPMB_6Y7jzQcwK2HD_h77KjQHg8wDxdCtngAikYo-zSoCNbA7APsGpuxHTp8-fBBotD-biDF6DNWnZDgEPauQoxIiTG4dYZUjPMDeQfCslsujX-Vc2sbzr=s387-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFu6bjyRtvvl9FG6Ap4ZaJ-bzqHdwLe2K_kMeZ1kqO3e-EuEgOYIMy-k3_RvGnFQrzXV0Bc9bCaTubFErfUGc1lM7zyDAXnkWYbOkq4M7BKTxK03b95e9eryke9VAzvwwq1lEPv=s677-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEE07mVtsbZ2HzL4OB2E2XNuLzA_YmA-OfPQzkr7BqSytW3nFVZLmKx-turClp4PyQneZz_pKAWLuEHlgQJNYhiiBO3eSHAX7YxHaNrcaJMzGvdL3xYGca4nAtoMLIQOk3jbufy=s406-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHP9QEd6fQ89Lin1lNRxVgfVTkBs1Gm18ddRSypQBFM9P96JTDQ8VLAuP4IOX7J6sHLYaEdFNjMLBcCWQ2PRvFYFyf0AEmSKkBSN7sgJTS1_rC7LHOxTsvjFhl9N6NeewhuCP0L=s387-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtZNYGdm1swtx7nERPMB_6Y7jzQcwK2HD_h77KjQHg8wDxdCtngAikYo-zSoCNbA7APsGpuxHTp8-fBBotD-biDF6DNWnZDgEPauQoxIiTG4dYZUjPMDeQfCslsujX-Vc2sbzr=s387-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAFu6bjyRtvvl9FG6Ap4ZaJ-bzqHdwLe2K_kMeZ1kqO3e-EuEgOYIMy-k3_RvGnFQrzXV0Bc9bCaTubFErfUGc1lM7zyDAXnkWYbOkq4M7BKTxK03b95e9eryke9VAzvwwq1lEPv=s677-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAEE07mVtsbZ2HzL4OB2E2XNuLzA_YmA-OfPQzkr7BqSytW3nFVZLmKx-turClp4PyQneZz_pKAWLuEHlgQJNYhiiBO3eSHAX7YxHaNrcaJMzGvdL3xYGca4nAtoMLIQOk3jbufy=s406-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHP9QEd6fQ89Lin1lNRxVgfVTkBs1Gm18ddRSypQBFM9P96JTDQ8VLAuP4IOX7J6sHLYaEdFNjMLBcCWQ2PRvFYFyf0AEmSKkBSN7sgJTS1_rC7LHOxTsvjFhl9N6NeewhuCP0L=s387-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGtZNYGdm1swtx7nERPMB_6Y7jzQcwK2HD_h77KjQHg8wDxdCtngAikYo-zSoCNbA7APsGpuxHTp8-fBBotD-biDF6DNWnZDgEPauQoxIiTG4dYZUjPMDeQfCslsujX-Vc2sbzr=s387-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  },
+  {
+    "id": "teknologi-6",
+    "nama": "PT Bio Farma",
+    "deskripsi": "PT Bio Farma adalah raksasa bioteknologi dan satu-satunya produsen vaksin manusia di Indonesia yang produknya telah mendapatkan kualifikasi dari World Health Organization (WHO) untuk diekspor ke lebih dari 150 negara. Perusahaan ini mengintegrasikan teknologi pemrosesan biologis canggih, rekayasa genetika, dan kultur sel dalam skala industri untuk menghasilkan vaksin berkualitas tinggi, termasuk vaksin polio, campak, serta pengembangan vaksin COVID-19 mRNA domestik (IndoVac). Bio Farma juga mengadopsi transformasi digital dalam jalur distribusinya dengan mengimplementasikan sistem pelacakan berbasis IoT dan data analitik untuk memantau suhu dan keamanan vaksin secara real-time dari pabrik hingga ke fasilitas layanan kesehatan terpencil, memastikan kualitas biologis produk tetap terjaga.",
+    "deskripsi_singkat": "PT Bio Farma adalah raksasa bioteknologi dan satu-satunya produsen vaksin manusia di Indonesia yang produknya telah mendapatkan kualifikasi dari World Health Organization (WHO) untuk diekspor ke lebih dari 150 negara. Perusahaan ini mengintegrasikan teknologi pemrosesan biologis canggih, rekayasa ge...",
+    "alamat": "Jl. Pasteur No.28, Pasteur, Kec. Sukajadi, Kota Bandung, Jawa Barat 40161 (Kunjungan umumnya terbatas untuk riset, akademisi, dan kedinasan dengan izin tertulis)",
+    "lokasi": "Jl. Pasteur No.28, Pasteur, Kec. Sukajadi, Kota Bandung, Jawa Barat 40161 (Kunjungan umumnya terbatas untuk riset, akademisi, dan kedinasan dengan izin tertulis)",
+    "image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAH4FSOpdOnXlMG4ElffZ8piUXYVAZ3pIoCjVQVzaNZc5J2Ww6jSwSR5J3PdsK7OMD7kCL2dibTDy5LvMCpsPuRuzG8tsJ-sNAKKeIJNn8jWtpn1DRWwlUaCmLQMXIhFWj8tu1-cog=s453-k-no",
+    "gambar": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAH4FSOpdOnXlMG4ElffZ8piUXYVAZ3pIoCjVQVzaNZc5J2Ww6jSwSR5J3PdsK7OMD7kCL2dibTDy5LvMCpsPuRuzG8tsJ-sNAKKeIJNn8jWtpn1DRWwlUaCmLQMXIhFWj8tu1-cog=s453-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHKbTmOOL8il7LNlHhGFWhjRSOPz8_wVnwRQEVIVfhMWdOhphfTwnKnK0353Gk1SDv_bBuX4rfR5wumPdGoiYdJggcxR-xw2DFWdoH97NssvKKxsaEa9H_qcXgncE4g8okyq9A=s516-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGLB9bhIqaLCyyfYga-D3wY3cmwnvMI9SdTouL2dkrnoHjz6f1x65KmKlvPkH77r9BEb_9woClkKfPIjmOcwQz24IWl_vKZxCiUEm1AsyFPFTdbQOHAtGyUsevqMSLjp4sc8RXfyQ=s516-k-no"
+    ],
+    "images": [
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAH4FSOpdOnXlMG4ElffZ8piUXYVAZ3pIoCjVQVzaNZc5J2Ww6jSwSR5J3PdsK7OMD7kCL2dibTDy5LvMCpsPuRuzG8tsJ-sNAKKeIJNn8jWtpn1DRWwlUaCmLQMXIhFWj8tu1-cog=s453-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAHKbTmOOL8il7LNlHhGFWhjRSOPz8_wVnwRQEVIVfhMWdOhphfTwnKnK0353Gk1SDv_bBuX4rfR5wumPdGoiYdJggcxR-xw2DFWdoH97NssvKKxsaEa9H_qcXgncE4g8okyq9A=s516-k-no",
+      "https://lh3.googleusercontent.com/gps-cs-s/APNQkAGLB9bhIqaLCyyfYga-D3wY3cmwnvMI9SdTouL2dkrnoHjz6f1x65KmKlvPkH77r9BEb_9woClkKfPIjmOcwQz24IWl_vKZxCiUEm1AsyFPFTdbQOHAtGyUsevqMSLjp4sc8RXfyQ=s516-k-no"
+    ],
+    "hero_image": "https://lh3.googleusercontent.com/gps-cs-s/APNQkAH4FSOpdOnXlMG4ElffZ8piUXYVAZ3pIoCjVQVzaNZc5J2Ww6jSwSR5J3PdsK7OMD7kCL2dibTDy5LvMCpsPuRuzG8tsJ-sNAKKeIJNn8jWtpn1DRWwlUaCmLQMXIhFWj8tu1-cog=s453-k-no",
+    "rating": 4.5,
+    "reviews_count": 0,
+    "jumlah_review": 0,
+    "kategori": [
+      "Teknologi"
+    ],
+    "harga_tiket": "",
+    "link_gmaps": ""
+  }
+]

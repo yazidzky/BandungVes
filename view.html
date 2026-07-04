@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail - BandungVerse</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=optional" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#6B21A8' }, fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/globals.css">
+    <script>
+        // Unregister any leftover Next.js Service Workers that might intercept and break vanilla HTML routing
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                }
+            });
+        }
+    </script>
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body.bg-\[#1b0730\] { background-color: #1b0730 !important; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .leaflet-container { font-family: inherit; }
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body id="body-container" class="min-h-screen flex flex-col pb-20 relative bg-[#f8f5ff]">
+    
+    <!-- Backgrounds (Toggled dynamically) -->
+    <div id="bg-light" class="absolute top-1/4 left-0 w-full h-1/2 bg-gradient-to-b from-[#f8f5ff] via-[#dfc4ff]/40 to-[#f8f5ff] z-0 pointer-events-none"></div>
+    
+    <div id="bg-dark" class="hidden">
+        <div class="fixed inset-0 bg-gradient-to-br from-[#1b0730] via-[#2a0e44] to-[#140424] z-0 pointer-events-none"></div>
+        <div class="fixed top-0 right-0 w-[800px] h-[800px] bg-purple-600/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+        <div class="fixed bottom-0 left-0 w-[600px] h-[600px] bg-pink-600/10 blur-[100px] rounded-full pointer-events-none z-0"></div>
+    </div>
+
+    <!-- Top Navbar Area -->
+    <div class="w-full px-4 lg:px-12 absolute top-0 left-0 z-50 flex justify-between items-center pt-4 lg:pt-8">
+        <div class="flex items-center gap-4 w-full">
+            <button id="btn-back" onclick="history.back()" class="flex items-center justify-center w-12 h-12 border rounded-full shadow-md transition-colors bg-white/90 backdrop-blur-sm border-gray-200 text-[#7c3aed] hover:bg-white">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            </button>
+
+            <!-- Search specific to dark mode -->
+            <div id="dark-search-bar" class="relative max-w-md w-full ml-4 hidden">
+                <input type="text" placeholder="Cari Teknologi atau Budaya" class="w-full bg-white/90 backdrop-blur-sm text-gray-900 px-6 py-3.5 rounded-full font-medium focus:outline-none shadow-md placeholder-gray-500" />
+                <div class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dynamic Content Area -->
+    <div id="content-area" class="w-full">
+        <!-- Injected via JS based on type -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/detail.js?v=4"></script>
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

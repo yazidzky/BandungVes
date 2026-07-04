@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jejak Waktu Kota Kembang - BandungVerse</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=optional" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: { colors: { primary: '#6B21A8' }, fontFamily: { sans: ['"Plus Jakarta Sans"', 'sans-serif'] } }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/globals.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0a0a0a; color: #f5f5f5; overflow-x: hidden; }
+        .line-clamp-6 {
+            display: -webkit-box;
+            -webkit-line-clamp: 6;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Initial state for fade-up animations */
+        .fade-up-item { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .fade-up-item.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="selection:bg-purple-500/30">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 p-6 flex justify-between items-center pointer-events-none drop-shadow-md">
+        <a href="index.html" class="pointer-events-auto group">
+            <button class="text-white hover:text-purple-300 transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:-translate-x-1 transition-transform"><path d="m15 18-6-6 6-6"/></svg>
+                <span class="font-bold tracking-widest uppercase text-sm">Kembali</span>
+            </button>
+        </a>
+        <div class="font-bold text-xl tracking-widest uppercase">
+            <img src="assets/img/logo_bandung_verse.svg" alt="Bandung Verse" class="h-8 drop-shadow-sm" />
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0" id="hero-bg-container">
+            <img id="hero-bg-img" src="" alt="Bandung Tempo Dulu" class="w-full h-full object-cover opacity-40 mix-blend-luminosity transition-transform duration-1000" onerror="this.onerror=null;this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27400%27 height=%27300%27%3E%3Crect width=%27400%27 height=%27300%27 fill=%27%23e9d5ff%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 text-anchor=%27middle%27 dy=%27.3em%27 fill=%27%237c3aed%27 font-size=%2714%27 font-family=%27sans-serif%27%3ETidak ada gambar%3C/text%3E%3C/svg%3E';" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50"></div>
+        </div>
+
+        <div class="z-10 text-center max-w-4xl px-6 fade-up-item visible">
+            <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter bg-clip-text text-transparent bg-gradient-to-b from-white to-neutral-500">
+                Jejak Waktu <br />Kota Kembang
+            </h1>
+            <p class="text-xl md:text-2xl text-neutral-400 font-light tracking-wide max-w-2xl mx-auto">
+                Menelusuri sejarah Bandung dari masa prasejarah hingga visi masa depan.
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 z-10 flex flex-col items-center gap-2 opacity-50 animate-bounce" style="left:0;right:0;margin:auto;width:fit-content;">
+            <span class="text-xs tracking-widest uppercase whitespace-nowrap">Scroll ke Bawah</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14" /><path d="m19 12-7 7-7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Loading -->
+    <div id="loading" class="flex justify-center items-center py-40">
+        <div class="w-10 h-10 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+
+    <!-- Timeline Sections -->
+    <div id="timeline-container" class="relative max-w-6xl mx-auto px-6 py-32 hidden">
+        <div class="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-neutral-800 to-transparent"></div>
+        <div id="story-list"></div>
+    </div>
+
+    <!-- Footer -->
+    <section class="py-32 flex flex-col items-center justify-center border-t border-neutral-900 bg-[#0a0a0a] relative overflow-hidden hidden" id="footer-section">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-[#0a0a0a] to-[#0a0a0a] pointer-events-none"></div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-8 z-10 text-center fade-up-item">
+            Petualangan Berlanjut.
+        </h2>
+        <a href="index.html" class="z-10 fade-up-item">
+            <button class="bg-white hover:bg-gray-100 text-[#0a0a0a] px-8 py-4 rounded-full font-bold tracking-widest uppercase flex items-center gap-3 shadow-[0_0_30px_rgba(255,255,255,0.2)] hover:scale-105 transition-transform">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+                Kembali ke Beranda
+            </button>
+        </a>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/story.js"></script>
+    <!-- Bottom Nav (mobile only) -->
+    <script src="js/bottom-nav.js"></script>
+</body>
+</html>

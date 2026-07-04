@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #ffffff;
+  overscroll-behavior: none;
+}
+
+/* Hide scrollbar globally for a cleaner, native-app-like experience */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.leaflet-container {
+  z-index: 0;
+}
+
+.glass {
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.glass-purple {
+  background-color: rgba(88, 28, 135, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Creative Button Hover & Click Effects ─── */
+
+/* Ripple effect container */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 10%, transparent 60%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-ripple:active::after {
+  transform: scale(2.5);
+  opacity: 1;
+  transition: transform 0s, opacity 0s;
+}
+
+.btn-ripple:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35), 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.btn-ripple:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* White button variant */
+.btn-ripple-white {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-ripple-white::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 10%, transparent 60%);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.4s ease;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.btn-ripple-white:active::after {
+  transform: scale(2.5);
+  opacity: 1;
+  transition: transform 0s, opacity 0s;
+}
+
+.btn-ripple-white:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+.btn-ripple-white:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Navigation link hover underline effect */
+.nav-link-hover {
+  position: relative;
+}
+
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #4c1d95, #4c1d95);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translateX(-50%);
+}
+
+.nav-link-hover:hover::after {
+  width: 100%;
+}
+
+/* Circle button (back, arrows) glow effect */
+.btn-circle-glow {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.btn-circle-glow::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from 0deg, #4c1d95, #a855f7, #4c1d95, #4c1d95);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.btn-circle-glow:hover::before {
+  opacity: 1;
+}
+
+.btn-circle-glow:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.4);
+}
+
+.btn-circle-glow:active {
+  transform: scale(0.92);
+  box-shadow: 0 0 8px rgba(124, 58, 237, 0.3);
+}

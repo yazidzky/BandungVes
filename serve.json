@@ -1,0 +1,14 @@
+{
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/explore", "destination": "/explore.html" },
+    { "source": "/budaya", "destination": "/budaya.html" },
+    { "source": "/teknologi", "destination": "/teknologi.html" },
+    { "source": "/story", "destination": "/story.html" },
+    { "source": "/map", "destination": "/map.html" },
+    { "source": "/planner", "destination": "/planner.html" },
+    { "source": "/itinerary", "destination": "/itinerary.html" },
+    { "source": "/view", "destination": "/view.html" }
+  ]
+}
