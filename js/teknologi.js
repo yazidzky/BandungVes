@@ -130,7 +130,7 @@ $(document).ready(function() {
             const sm1    = allImgs[1] || allImgs[0] || '';
             const sm2    = allImgs[2] || allImgs[0] || '';
 
-            // Horizontal pill scroll — semua item teknologi
+            // Horizontal pill scroll    semua item teknologi
             let pillsHtml = '';
             displayTechnologies.forEach(t => {
                 const isAct = t.id === activeId;

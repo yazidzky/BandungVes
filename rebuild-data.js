@@ -167,4 +167,4 @@ console.log(`✅ story.json: ${story.length} items, images from real URLs`);
 
 // ─── SUMMARY ──────────────────────────────────────────────────────────────────
 console.log('\n🎉 All data/ files rebuilt with real image URLs from assets/Data/');
-console.log('   No more SVG placeholders — real photos will now load from Google/Wikipedia CDN');
+console.log('   No more SVG placeholders    real photos will now load from Google/Wikipedia CDN');

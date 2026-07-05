@@ -132,7 +132,7 @@ $(document).ready(function() {
             const sm1      = allImgs[1] || allImgs[0] || '';
             const sm2      = allImgs[2] || allImgs[0] || '';
 
-            // Horizontal pill scroll — semua item, active highlighted, bisa diklik
+            // Horizontal pill scroll    semua item, active highlighted, bisa diklik
             let pillsHtml = '';
             displayCultures.forEach(c => {
                 const isAct = c.id === activeId;

@@ -11,7 +11,7 @@ $(document).ready(function() {
     let map = null;
     let markers = [];
 
-    // Filter Config — disesuaikan dengan isi data JSON
+    // Filter Config    disesuaikan dengan isi data JSON
     const availableFilters = [
         { id: 'wisata',          label: 'Wisata',        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>', type: 'type' },
         { id: 'kuliner',         label: 'Kuliner',       icon: '<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>', type: 'type' },

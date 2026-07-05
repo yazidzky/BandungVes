@@ -11,7 +11,7 @@ const BLOCKED_DOMAINS = [
     'lh5.googleusercontent.com',
     'lh6.googleusercontent.com',
     'placehold.co',
-    'encrypted-tbn0.gstatic.com',  // Google thumbnail cache — often blocked
+    'encrypted-tbn0.gstatic.com',  // Google thumbnail cache    often blocked
 ];
 
 function isUnreliableUrl(url) {

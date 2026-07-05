@@ -163,12 +163,12 @@
                 Temukan Cerita di<br/><span class="text-[#5b21b6]">Setiap Sudut Kota</span>
             </h1>
 
-            <!-- Signpost buttons — tiang di tengah, sisi tempel tiang = lurus -->
+            <!-- Signpost buttons    tiang di tengah, sisi tempel tiang = lurus -->
             <div class="relative w-full flex flex-col items-center gap-3">
-                <!-- Tiang vertikal — dari atas sampai bawah container (= border ungu wisata) -->
+                <!-- Tiang vertikal    dari atas sampai bawah container (= border ungu wisata) -->
                 <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-2 bg-[#3b0764] z-0" style="border-radius:4px 4px 0 0;"></div>
 
-                <!-- "Jelajahi Bandung >" — kanan dari tiang, sisi kiri lurus -->
+                <!-- "Jelajahi Bandung >"    kanan dari tiang, sisi kiri lurus -->
                 <div class="relative z-10 w-full flex justify-end pr-4">
                     <a href="explore.html">
                         <button class="bg-[#4c1d95] text-white font-bold px-7 py-3.5 shadow-lg flex items-center gap-2 text-[0.95rem]" style="border-radius:0 999px 999px 0;">
@@ -178,7 +178,7 @@
                     </a>
                 </div>
 
-                <!-- "< Bandung Tempo Dulu" — kiri dari tiang, sisi kanan lurus -->
+                <!-- "< Bandung Tempo Dulu"    kiri dari tiang, sisi kanan lurus -->
                 <div class="relative z-10 w-full flex justify-start pl-4">
                     <a href="story.html">
                         <button class="bg-[#4c1d95] text-white font-bold px-7 py-3.5 shadow-lg flex items-center gap-2 text-[0.95rem]" style="border-radius:999px 0 0 999px;">
@@ -227,9 +227,9 @@
                 </h1>
                 <p class="text-lg text-gray-600 mb-8 max-w-md">Jelajahi sejarah, budaya, kuliner, dan destinasi terbaik Bandung dalam satu pengalaman interaktif.</p>
                 <div class="relative mt-12 w-fit">
-                    <!-- Tiang vertikal — di kiri tombol "Jelajahi" dan di kanan tombol "Tempo Dulu" -->
+                    <!-- Tiang vertikal    di kiri tombol "Jelajahi" dan di kanan tombol "Tempo Dulu" -->
                     <div class="absolute w-[8px] bg-purple-900 z-0" style="left:216px; top:-30px; height:300px; border-radius:4px 4px 0 0;"></div>
-                    <!-- "Jelajahi Bandung" — mulai dari tiang ke kanan, sisi kiri lurus (tempel tiang), sisi kanan pill -->
+                    <!-- "Jelajahi Bandung"    mulai dari tiang ke kanan, sisi kiri lurus (tempel tiang), sisi kanan pill -->
                     <div class="flex w-[440px] relative z-10">
                         <div class="w-[216px]"></div>
                         <a href="explore.html">
@@ -239,7 +239,7 @@
                             </button>
                         </a>
                     </div>
-                    <!-- "< Bandung Tempo Dulu" — berakhir di tiang dari kiri, sisi kiri pill, sisi kanan lurus (tempel tiang) -->
+                    <!-- "< Bandung Tempo Dulu"    berakhir di tiang dari kiri, sisi kiri pill, sisi kanan lurus (tempel tiang) -->
                     <div class="flex w-[440px] relative z-10 mt-2">
                         <a href="story.html">
                             <button class="btn-ripple bg-[#4c1d95] text-white pl-8 pr-7 py-3 font-bold shadow-md flex items-center gap-3 whitespace-nowrap" style="border-radius:999px 0 0 999px;">
@@ -257,7 +257,7 @@
         <div class="hidden md:block relative" style="height:0; overflow:visible; z-index:5;">
             <div id="tiang-extension" style="position:absolute; width:8px; background:#3b0764; border-radius:0 0 4px 4px; top:0; left:0; height:60px; display:none;"></div>
         </div>
-        <!-- Static anchor IDs for desktop nav — always available regardless of JS -->
+        <!-- Static anchor IDs for desktop nav    always available regardless of JS -->
         <div id="wisata" style="height:0;"></div>
         <div id="wisata-container" class="-mt-12 z-20 relative"></div>
         <div id="kuliner" style="height:0;"></div>
@@ -397,7 +397,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Mobile arrows — injected outside section, positioned by JS -->
+                        <!-- Mobile arrows    injected outside section, positioned by JS -->
                         <button id="btn-wisata-prev-mobile" class="md:hidden" style="display:none; position:absolute; width:40px; height:40px; left:6px; background:white; color:#4c1d95; border-radius:50%; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                         </button>
@@ -446,7 +446,7 @@
                         if (page < totalPages - 1) { page++; renderPageAndPositionArrows(); }
                     });
 
-                    // Mobile prev/next — same pagination + JS position arrows
+                    // Mobile prev/next    same pagination + JS position arrows
                     $(document).on('click', '#btn-wisata-prev-mobile', function() {
                         if (page > 0) { page--; renderPageAndPositionArrows(); }
                     });
@@ -768,11 +768,11 @@
                                             </a>
                                         </div>
                                         
-                                        <!-- Left arrow — overflow keluar dari sisi kiri -->
+                                        <!-- Left arrow    overflow keluar dari sisi kiri -->
                                         <button class="budaya-up-btn absolute bg-white text-purple-700 rounded-full flex items-center justify-center shadow-xl active:scale-95 transition-transform" style="width:40px;height:40px;left:-20px;top:calc(24px + 150px - 20px);z-index:20;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                                         </button>
-                                        <!-- Right arrow — overflow keluar dari sisi kanan -->
+                                        <!-- Right arrow    overflow keluar dari sisi kanan -->
                                         <button class="budaya-down-btn absolute bg-white text-purple-700 rounded-full flex items-center justify-center shadow-xl active:scale-95 transition-transform" style="width:40px;height:40px;right:-20px;top:calc(24px + 150px - 20px);z-index:20;">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                                         </button>
@@ -783,11 +783,11 @@
                                 <div class="px-5">
                                     <!-- Title -->
                                     <h2 id="budaya-title" class="text-[2rem] font-extrabold text-white leading-tight mb-3 transition-all duration-500"></h2>
-                                    <!-- Category pills — outline white pill -->
+                                    <!-- Category pills    outline white pill -->
                                     <div id="budaya-cats" class="flex flex-wrap gap-2 mb-4"></div>
                                     <!-- Description -->
                                     <p id="budaya-desc" class="text-white/85 text-[0.88rem] leading-relaxed mb-6 line-clamp-4 transition-all duration-500"></p>
-                                    <!-- CTA — outline pill solid ungu bg -->
+                                    <!-- CTA    outline pill solid ungu bg -->
                                     <a href="budaya.html">
                                         <button class="bg-white text-purple-900 font-bold text-sm px-7 py-3 rounded-full inline-flex items-center gap-2 active:scale-[0.98] transition-transform">
                                             Eksplor Budaya
@@ -800,7 +800,7 @@
                             <!-- Desktop Layout -->
                             <div class="hidden md:grid relative z-10 w-full" style="grid-template-columns:1fr 1fr; min-height:100vh;">
 
-                                <!-- Kiri: Info — padding penuh vertikal -->
+                                <!-- Kiri: Info    padding penuh vertikal -->
                                 <div class="flex flex-col justify-center px-16 py-16">
                                     <!-- Label -->
                                     <div class="flex items-center gap-3 mb-5">
@@ -828,7 +828,7 @@
                                     </div>
                                 </div>
 
-                                <!-- Kanan: Image stack — penuh tinggi, tidak terpotong -->
+                                <!-- Kanan: Image stack    penuh tinggi, tidak terpotong -->
                                 <div class="flex flex-col" style="min-height:100vh; padding: 0; gap:0;">
 
                                     <!-- Prev peek -->
@@ -843,7 +843,7 @@
                                         </button>
                                     </div>
 
-                                    <!-- Main image — flex-1 mengisi sisa ruang -->
+                                    <!-- Main image    flex-1 mengisi sisa ruang -->
                                     <div class="flex-1 mx-6 rounded-3xl overflow-hidden shadow-2xl relative z-10" style="min-height:300px;">
                                         <a class="budaya-link absolute inset-0 block" href="#">
                                             <img class="budaya-main-img absolute inset-0 w-full h-full object-cover transition-all duration-500 hover:scale-105 cursor-pointer" src="" />
