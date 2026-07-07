@@ -60,7 +60,9 @@
         /* ── NAV PILL ─────────────────────────── */
         var pill = document.createElement('div');
         pill.id = 'bottom-nav-global';
-        pill.className = 'nav-bounce-in';
+        // Only bounce in if nav is NOT hidden (otherwise apply hidden state silently)
+        var savedHidden = sessionStorage.getItem('bv-nav-hidden') === '1';
+        if (!savedHidden) pill.className = 'nav-bounce-in';
         pill.style.cssText = 'position:fixed;bottom:24px;left:0;right:0;width:100vw;text-align:center;z-index:9990;pointer-events:none;';
 
         pill.innerHTML =
@@ -125,23 +127,39 @@
         document.documentElement.appendChild(toggle);
 
         /* ── TOGGLE INTERACTION ──────────────── */
-        var hidden = false;
+        var hidden = sessionStorage.getItem('bv-nav-hidden') === '1';
         var icon   = document.getElementById('toggle-nav-icon');
+
+        // Apply saved state immediately on inject (no animation)
+        if (hidden) {
+            pill.style.transition   = 'none';
+            toggle.style.transition = 'none';
+            pill.style.transform    = 'translateY(90px)';
+            pill.style.opacity      = '0';
+            toggle.style.bottom     = '20px';
+            icon.classList.add('icon-rotated');
+            toggle.setAttribute('aria-label', 'Tampilkan navigasi');
+            // Re-enable transitions after next frame
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    pill.style.transition   = '';
+                    toggle.style.transition = '';
+                });
+            });
+        }
 
         toggle.addEventListener('click', function() {
             hidden = !hidden;
+            sessionStorage.setItem('bv-nav-hidden', hidden ? '1' : '0');
 
             if (hidden) {
-                /* Slide nav pill off screen (spring bounce) */
                 pill.style.transform   = 'translateY(90px)';
                 pill.style.opacity     = '0';
-                /* Move toggle button lower but still accessible */
                 toggle.style.bottom    = '20px';
                 icon.classList.add('icon-rotated');
                 toggle.setAttribute('aria-label', 'Tampilkan navigasi');
                 if (navigator.vibrate) navigator.vibrate(10);
             } else {
-                /* Spring back */
                 pill.style.transform   = 'translateY(0)';
                 pill.style.opacity     = '1';
                 toggle.style.bottom    = '92px';
