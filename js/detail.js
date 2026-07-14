@@ -526,6 +526,12 @@ $(document).ready(function() {
         });
 
         L.marker([displayData.lat, displayData.long], { icon }).addTo(map);
+
+        setTimeout(() => {
+            if (map) {
+                map.invalidateSize();
+            }
+        }, 300);
     }
 
     function showError() {
