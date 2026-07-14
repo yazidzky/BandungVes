@@ -27,10 +27,17 @@ html, body {
 }
 
 /* ─── Skeleton Shimmer Loading ─── */
+/* ─── Skeleton Shimmer Loading ─── */
 .skeleton-shimmer {
   position: relative;
   overflow: hidden;
+}
+.skeleton-shimmer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
   background: linear-gradient(135deg, #e9d5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
+  z-index: 10;
 }
 .skeleton-shimmer::after {
   content: '';
@@ -43,6 +50,7 @@ html, body {
     transparent 100%
   );
   animation: shimmer 1.5s infinite;
+  z-index: 11;
 }
 @keyframes shimmer {
   0%   { transform: translateX(-100%); }
@@ -52,8 +60,14 @@ html, body {
 /* Image skeleton: applied to img containers while loading */
 .img-skeleton {
   position: relative;
-  background: linear-gradient(135deg, #e9d5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
   overflow: hidden;
+}
+.img-skeleton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #e9d5ff 0%, #f3e8ff 50%, #e9d5ff 100%);
+  z-index: 10;
 }
 .img-skeleton::after {
   content: '';
@@ -66,16 +80,17 @@ html, body {
     transparent 100%
   );
   animation: shimmer 1.5s infinite;
+  z-index: 11;
 }
 .img-skeleton > img {
   opacity: 0;
   transition: opacity 0.4s ease;
+  position: relative;
+  z-index: 12;
 }
+.img-skeleton.loaded::before,
 .img-skeleton.loaded::after {
   display: none;
-}
-.img-skeleton.loaded {
-  background: transparent;
 }
 .img-skeleton.loaded > img {
   opacity: 1;
@@ -84,8 +99,14 @@ html, body {
 /* Dark variant for dark backgrounds */
 .img-skeleton-dark {
   position: relative;
-  background: linear-gradient(135deg, #2d0a4e 0%, #3b1260 50%, #2d0a4e 100%);
   overflow: hidden;
+}
+.img-skeleton-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #2d0a4e 0%, #3b1260 50%, #2d0a4e 100%);
+  z-index: 10;
 }
 .img-skeleton-dark::after {
   content: '';
@@ -98,16 +119,17 @@ html, body {
     transparent 100%
   );
   animation: shimmer 1.5s infinite;
+  z-index: 11;
 }
 .img-skeleton-dark > img {
   opacity: 0;
   transition: opacity 0.4s ease;
+  position: relative;
+  z-index: 12;
 }
+.img-skeleton-dark.loaded::before,
 .img-skeleton-dark.loaded::after {
   display: none;
-}
-.img-skeleton-dark.loaded {
-  background: transparent;
 }
 .img-skeleton-dark.loaded > img {
   opacity: 1;
