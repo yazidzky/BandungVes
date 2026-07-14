@@ -25,6 +25,8 @@
             }
         }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/motion@11.11.13/dist/motion.js"></script>
+    <script src="js/motion-animations.js"></script>
 
     <!-- Custom CSS to mimic global.css -->
     <link rel="stylesheet" href="css/globals.css">
@@ -56,8 +58,8 @@
         }
         .btn-ripple:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgba(107, 33, 168, 0.4); }
         
-        /* Simple fade-in animation for jQuery to trigger */
-        .fade-in-up { opacity: 0; transform: translateY(20px); transition: opacity 0.8s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1); }
+        /* Initial state for Motion animations */
+        .fade-in-up { opacity: 0; }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
         .delay-100 { transition-delay: 100ms; }
         .delay-200 { transition-delay: 200ms; }
@@ -277,6 +279,9 @@
         const FALLBACK_IMG = "assets/img/placeholders/wisata-1-0.svg";
 
         $(document).ready(function() {
+            // Show skeleton loader
+            if (window.BVMotion) window.BVMotion.showSkeleton();
+
             // Trigger entry animations
             setTimeout(() => {
                 $('.fade-in-up').addClass('visible');
@@ -316,15 +321,14 @@
             setTimeout(positionTiangExtension, 200);
             window.addEventListener('resize', positionTiangExtension);
 
-            // Initialize global IntersectionObserver BEFORE render functions are called
-            window.observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        $(entry.target).addClass('visible');
-                        obs.unobserve(entry.target);
-                    }
-                });
-            }, { root: null, rootMargin: '0px', threshold: 0.1 });
+            // Initialize global observer using Motion
+            if (window.BVMotion) {
+                window.BVMotion.setupScrollReveal();
+            } else {
+                window.observer = {
+                    observe: function(el) { $(el).addClass('visible'); }
+                };
+            }
 
             // Function to load and render Wisata Grid
             function renderWisataGrid(onDone) {
@@ -363,6 +367,7 @@
                         }
                         const fullHtml = cardsHtml + fillerHtml;
 
+                        var prevPage = page;
                         $('#wisata-cards-mobile').html(fullHtml);
                         $('#wisata-cards-desktop').html(fullHtml);
 
@@ -440,24 +445,31 @@
 
                     // Desktop prev/next pagination
                     $('#btn-wisata-prev').on('click', function() {
-                        if (page > 0) { page--; renderPageAndPositionArrows(); }
+                        if (page > 0) { window._wisataDir = 'prev'; page--; renderPageAndPositionArrows(); }
                     });
                     $('#btn-wisata-next').on('click', function() {
-                        if (page < totalPages - 1) { page++; renderPageAndPositionArrows(); }
+                        if (page < totalPages - 1) { window._wisataDir = 'next'; page++; renderPageAndPositionArrows(); }
                     });
 
                     // Mobile prev/next    same pagination + JS position arrows
                     $(document).on('click', '#btn-wisata-prev-mobile', function() {
-                        if (page > 0) { page--; renderPageAndPositionArrows(); }
+                        if (page > 0) { window._wisataDir = 'prev'; page--; renderPageAndPositionArrows(); }
                     });
                     $(document).on('click', '#btn-wisata-next-mobile', function() {
-                        if (page < totalPages - 1) { page++; renderPageAndPositionArrows(); }
+                        if (page < totalPages - 1) { window._wisataDir = 'next'; page++; renderPageAndPositionArrows(); }
                     });
 
                     // After render, position arrows using fixed positioning (clip-proof)
                     const origRenderPage = renderPage;
                     function renderPageAndPositionArrows() {
+                        var oldPage = page;
                         origRenderPage();
+                        // Animate card transition with Motion
+                        if (window.BVMotion) {
+                            var dir = 'next'; // default
+                            window.BVMotion.animateCardTransition('wisata-cards-mobile', dir);
+                            window.BVMotion.animateCardTransition('wisata-cards-desktop', dir);
+                        }
                         setTimeout(function() {
                             const grid = document.getElementById('wisata-cards-mobile');
                             const p = document.getElementById('btn-wisata-prev-mobile');
@@ -881,16 +893,14 @@
                         const prevImg = prevItem.image || (prevItem.gambar && prevItem.gambar[0]) || FALLBACK_IMG;
                         const nextImg = nextItem.image || (nextItem.gambar && nextItem.gambar[0]) || FALLBACK_IMG;
 
-                        // Fade
-                        $('#budaya-title, #budaya-desc, .budaya-main-img, #budaya-bg, #budaya-title-desktop, #budaya-desc-desktop').css('opacity', 0);
-
-                        setTimeout(() => {
-                        // Update both mobile + desktop elements
-                        $('#budaya-bg').attr('src', img);
-                        $('.budaya-main-img').attr('src', img);
-                        $('.budaya-prev-img').attr('src', prevImg);
-                        $('.budaya-next-img').attr('src', nextImg);
-                        $('.budaya-link').attr('href', `view.html?v=4&id=${item.id}`);
+                        // Content update function
+                        function _doUpdate() {
+                            // Update both mobile + desktop elements
+                            $('#budaya-bg').attr('src', img);
+                            $('.budaya-main-img').attr('src', img);
+                            $('.budaya-prev-img').attr('src', prevImg);
+                            $('.budaya-next-img').attr('src', nextImg);
+                            $('.budaya-link').attr('href', `view.html?v=4&id=${item.id}`);
 
                             const titleTxt = item.nama || '';
                             const descTxt = item.deskripsi || '';
@@ -904,9 +914,7 @@
                             if (item.kategori) {
                                 const cats = Array.isArray(item.kategori) ? item.kategori : item.kategori.split('/');
                                 cats.forEach(cat => {
-                                    // Mobile: solid white pill
                                     catsHtml += `<span class="px-4 py-1.5 bg-white text-purple-900 rounded-full text-xs font-bold">${cat.trim()}</span>`;
-                                    // Desktop: solid white pill
                                     catsHtmlDesktop += `<span class="px-4 py-1 bg-white text-purple-900 rounded-full text-sm font-bold">${cat.trim()}</span>`;
                                 });
                             } else {
@@ -915,11 +923,15 @@
                             }
                             $('#budaya-cats').html(catsHtml);
                             $('#budaya-cats-desktop').html(catsHtmlDesktop);
-
-                            $('#budaya-title, #budaya-desc, .budaya-main-img').css('opacity', 1);
-                            $('#budaya-title-desktop, #budaya-desc-desktop').css('opacity', 1);
                             $('#budaya-bg').css('opacity', 0.4);
-                        }, 300);
+                        }
+
+                        // Use Motion animation if available, else simple fade
+                        if (window.BVMotion && window._budayaSwitchDir) {
+                            window.BVMotion.animateBudayaSwitch(window._budayaSwitchDir, _doUpdate);
+                        } else {
+                            _doUpdate();
+                        }
 
                         // Thumbnails (mobile + desktop)
                         let thumbsHtml = '';
@@ -940,10 +952,12 @@
                     // Attach events to static container
                     $('#budaya-container').on('click', '.budaya-up-btn', function() {
                         activeItem = (activeItem - 1 + data.length) % data.length;
+                        window._budayaSwitchDir = 'up';
                         updateContent();
                     });
                     $('#budaya-container').on('click', '.budaya-down-btn', function() {
                         activeItem = (activeItem + 1) % data.length;
+                        window._budayaSwitchDir = 'down';
                         updateContent();
                     });
                     $('#budaya-container').on('click', '.budaya-thumb', function() {
@@ -957,9 +971,18 @@
             } // end renderBudaya
 
             // Call renders
+            let _sectionsLoaded = 0;
             function _sectionDone() {
+                _sectionsLoaded++;
                 // Activate fade-in-up globally since there's no splash screen
                 $('.fade-in-up').addClass('visible');
+                // Dismiss skeleton when all 4 sections are done
+                if (_sectionsLoaded >= 4) {
+                    if (window.BVMotion) {
+                        window.BVMotion.dismissSkeleton();
+                        window.BVMotion.animateHeroEntry();
+                    }
+                }
             }
 
             // Load hero images from real wisata data
@@ -997,7 +1020,10 @@
             renderKulinerGrid(_sectionDone);
             renderTeknologi(_sectionDone);
             renderBudaya(_sectionDone);
-            setTimeout(_dismissSplash, 6000);
+            // Fallback: dismiss skeleton after 6s if not all sections loaded
+            setTimeout(function() {
+                if (window.BVMotion) window.BVMotion.dismissSkeleton();
+            }, 6000);
         });
     </script>
     <!-- Bottom Nav (mobile only) -->

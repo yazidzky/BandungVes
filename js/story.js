@@ -162,21 +162,29 @@ $(document).ready(function() {
             }
         });
 
-        // Intersection Observer for fade-up items
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    $(entry.target).addClass('visible');
-                    // observer.unobserve(entry.target); // Optional: if you only want it to animate once
-                }
+        if (window.Motion && window.Motion.inView) {
+            window.Motion.inView('.fade-up-item', (info) => {
+                window.Motion.animate(info.target, 
+                    { opacity: [0, 1], y: [50, 0] }, 
+                    { duration: 0.8, easing: [0.25, 0.1, 0.25, 1] }
+                );
+            }, { margin: "0px 0px -100px 0px" });
+        } else {
+            // Fallback
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).addClass('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px"
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: "0px 0px -100px 0px"
-        });
 
-        $('.fade-up-item').each(function() {
-            observer.observe(this);
-        });
+            $('.fade-up-item').each(function() {
+                observer.observe(this);
+            });
+        }
     }
 });
