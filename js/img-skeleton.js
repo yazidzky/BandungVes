@@ -34,6 +34,10 @@
         // Skip if parent has substantial text content (it's not just an image wrapper)
         if (parent.textContent && parent.textContent.trim().length > 15) return;
 
+        // Skip if parent has non-image children (likely a complex layout, not a simple image wrapper)
+        const hasNonImgChildren = Array.from(parent.children).some(child => child.tagName !== 'IMG' && child.tagName !== 'PICTURE' && child.tagName !== 'SOURCE');
+        if (hasNonImgChildren) return;
+
         // Detect dark background
         const isDark = parent.closest('[class*="bg-[#0a0a0a]"], [class*="bg-[#1b0730]"], [class*="bg-[#1a0b2e]"], [style*="background:#1a0b2e"], [style*="background:#4c1d95"]');
 
