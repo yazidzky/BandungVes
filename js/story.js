@@ -152,6 +152,11 @@ $(document).ready(function() {
                     $('#hero-bg-container').css('opacity', opacity);
                 }
             }
+            
+            // Redirect to index when reached bottom
+            if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 5) {
+                window.location.href = 'index.html';
+            }
         });
 
         // Intersection Observer for fade-up items

@@ -499,7 +499,15 @@ $(document).ready(function() {
     function initLeaflet() {
         if (!displayData.lat || !displayData.long) return;
         
-        map = L.map('map', { zoomControl: false }).setView([displayData.lat, displayData.long], 15);
+        map = L.map('map', { 
+            zoomControl: false,
+            dragging: false,
+            touchZoom: false,
+            scrollWheelZoom: false,
+            doubleClickZoom: false,
+            boxZoom: false,
+            keyboard: false
+        }).setView([displayData.lat, displayData.long], 15);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
         
         const icon = L.divIcon({

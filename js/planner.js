@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     // Initialize Map
     function initMap() {
-        map = L.map('map', { zoomControl: false }).setView([-6.9175, 107.6191], 13);
+        map = L.map('map', { zoomControl: false, minZoom: 11 }).setView([-6.9175, 107.6191], 13);
         L.control.zoom({ position: 'bottomright' }).addTo(map);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
     }
