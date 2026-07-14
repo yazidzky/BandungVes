@@ -99,10 +99,10 @@ $(document).ready(function() {
             result = result.filter(loc => activeTypes.includes(loc.type));
         }
 
-        // By Category
+        // By Category (AND logic: item must match ALL selected categories)
         const activeCats = activeFilters.filter(f => availableFilters.find(af => af.id === f)?.type === 'category');
         if (activeCats.length > 0) {
-            result = result.filter(loc => loc.kategori && activeCats.some(cat => loc.kategori.includes(cat)));
+            result = result.filter(loc => loc.kategori && activeCats.every(cat => loc.kategori.includes(cat)));
         }
 
         // By Search

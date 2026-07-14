@@ -16,7 +16,6 @@ $(document).ready(function() {
             
             $('#loading').hide();
             $('#timeline-container').removeClass('hidden');
-            $('#footer-section').removeClass('hidden');
 
             setupScrollObserver();
             setupInteractions();
