@@ -44,8 +44,20 @@ $(document).ready(function() {
 
     // 2. Init Map
     function initMap() {
-        // Center Bandung
-        map = L.map('map', { zoomControl: false, minZoom: 11 }).setView([-6.9175, 107.6191], 13);
+        // Bounds untuk area Bandung dan sekitarnya
+        const bandungBounds = [
+            [-7.2, 107.35], // South West
+            [-6.7, 107.85]  // North East
+        ];
+
+        // Center Bandung dengan maxBounds
+        map = L.map('map', { 
+            zoomControl: false, 
+            minZoom: 11, 
+            maxBounds: bandungBounds,
+            maxBoundsViscosity: 1.0 // Mencegah geser ke luar batas
+        }).setView([-6.9175, 107.6191], 12);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
