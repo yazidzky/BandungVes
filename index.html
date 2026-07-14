@@ -400,15 +400,15 @@
                             <div style="background:linear-gradient(to bottom, #4c1d95, white); height:195px; position:relative;">
                                 <div id="wisata-cards-mobile" class="grid gap-2 px-4" style="grid-template-columns:repeat(3,1fr); position:absolute; top:20px; left:0; right:0;">
                                 </div>
+                                <!-- Mobile arrows (absolute to this relative container) -->
+                                <button id="btn-wisata-prev-mobile" class="btn-ripple flex items-center justify-center" style="position:absolute; width:40px; height:40px; left:6px; top:130px; background:white; color:#4c1d95; border-radius:50%; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                                </button>
+                                <button id="btn-wisata-next-mobile" class="btn-ripple flex items-center justify-center" style="position:absolute; width:40px; height:40px; right:6px; top:130px; background:white; color:#4c1d95; border-radius:50%; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                </button>
                             </div>
                         </div>
-                        <!-- Mobile arrows    injected outside section, positioned by JS -->
-                        <button id="btn-wisata-prev-mobile" class="btn-ripple md:hidden flex items-center justify-center" style="display:none; position:absolute; width:40px; height:40px; left:6px; background:white; color:#4c1d95; border-radius:50%; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-                        </button>
-                        <button id="btn-wisata-next-mobile" class="btn-ripple md:hidden flex items-center justify-center" style="display:none; position:absolute; right:6px; background:white; color:#4c1d95; border-radius:50%; width:40px; height:40px; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-                        </button>
 
                         <!-- Desktop: full wisata section -->
                         <section class="hidden md:block relative w-full bg-gradient-to-r from-[#4c1d95] from-[32%] via-[#e9d5ff] to-white pt-16 pb-0" style="overflow:visible;">
@@ -470,55 +470,7 @@
                             window.BVMotion.animateCardTransition('wisata-cards-mobile', dir);
                             window.BVMotion.animateCardTransition('wisata-cards-desktop', dir);
                         }
-                        setTimeout(function() {
-                            const grid = document.getElementById('wisata-cards-mobile');
-                            const p = document.getElementById('btn-wisata-prev-mobile');
-                            const n = document.getElementById('btn-wisata-next-mobile');
-                            if (!grid || !p || !n) return;
-
-                            // Hide on desktop
-                            if (window.innerWidth >= 768) {
-                                p.style.display = 'none';
-                                n.style.display = 'none';
-                                return;
-                            }
-
-                            const rect = grid.getBoundingClientRect();
-                            const cardH = 260;
-
-                            [p, n].forEach(function(btn) {
-                                btn.style.display = 'flex';
-                                btn.style.position = 'fixed';
-                                btn.style.top = rect.top + (cardH / 2) - 20 + 'px';
-                            });
-                            p.style.left = '6px';
-                            p.style.right = 'auto';
-                            n.style.right = '6px';
-                            n.style.left = 'auto';
-
-                            // Update on scroll
-                            window.removeEventListener('scroll', window._wisataArrowScroll || function(){});
-                            window._wisataArrowScroll = function() {
-                                const r2 = grid.getBoundingClientRect();
-                                const t = r2.top + (cardH / 2) - 20 + 'px';
-                                p.style.top = t;
-                                n.style.top = t;
-                            };
-                            window.addEventListener('scroll', window._wisataArrowScroll, { passive: true });
-
-                            // Also hide on resize to desktop
-                            window.removeEventListener('resize', window._wisataArrowResize || function(){});
-                            window._wisataArrowResize = function() {
-                                if (window.innerWidth >= 768) {
-                                    p.style.display = 'none';
-                                    n.style.display = 'none';
-                                } else {
-                                    p.style.display = 'flex';
-                                    n.style.display = 'flex';
-                                }
-                            };
-                            window.addEventListener('resize', window._wisataArrowResize);
-                        }, 80);
+                            // We removed the JS positioning logic because the buttons are now absolutely positioned via CSS.
                     }
 
                     renderPageAndPositionArrows();
