@@ -56,8 +56,11 @@ $(document).ready(function() {
                 mainImgHtml = `<div class="w-full h-full bg-neutral-900 flex items-center justify-center"><span class="text-neutral-600 text-sm">Tidak ada gambar</span></div>`;
             }
 
+            const isLast = index === storyData.length - 1;
+            const marginClass = isLast ? 'mb-0' : 'mb-32 md:mb-48';
+
             html += `
-                <section class="fade-up-item relative mb-32 md:mb-48 flex flex-col ${flexDirection} gap-8 md:gap-24 items-center">
+                <section class="fade-up-item relative ${marginClass} flex flex-col ${flexDirection} gap-8 md:gap-24 items-center">
                     <!-- Timeline Dot -->
                     <div class="absolute left-0 md:left-1/2 -translate-x-[5px] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.8)] z-10 hidden md:block"></div>
 
