@@ -452,10 +452,12 @@
                     });
 
                     // Mobile prev/next    same pagination + JS position arrows
-                    $(document).on('click', '#btn-wisata-prev-mobile', function() {
+                    $(document).on('click', '#btn-wisata-prev-mobile', function(e) {
+                        e.preventDefault();
                         if (page > 0) { window._wisataDir = 'prev'; page--; renderPageAndPositionArrows(); }
                     });
-                    $(document).on('click', '#btn-wisata-next-mobile', function() {
+                    $(document).on('click', '#btn-wisata-next-mobile', function(e) {
+                        e.preventDefault();
                         if (page < totalPages - 1) { window._wisataDir = 'next'; page++; renderPageAndPositionArrows(); }
                     });
 

@@ -63,7 +63,7 @@
         // Only bounce in if nav is NOT hidden (otherwise apply hidden state silently)
         var savedHidden = sessionStorage.getItem('bv-nav-hidden') === '1';
         if (!savedHidden) pill.className = 'nav-bounce-in';
-        pill.style.cssText = 'position:fixed;bottom:24px;left:0;right:0;width:100vw;text-align:center;z-index:9990;pointer-events:none;';
+        pill.style.cssText = 'position:fixed;bottom:24px;left:0;right:0;width:100vw;text-align:center;z-index:9990;pointer-events:none;-webkit-transform:translateZ(0);transform:translateZ(0);';
 
         pill.innerHTML =
             '<nav style="pointer-events:auto;display:inline-flex;">' +
