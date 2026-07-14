@@ -403,10 +403,10 @@
                             </div>
                         </div>
                         <!-- Mobile arrows    injected outside section, positioned by JS -->
-                        <button id="btn-wisata-prev-mobile" class="md:hidden" style="display:none; position:absolute; width:40px; height:40px; left:6px; background:white; color:#4c1d95; border-radius:50%; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                        <button id="btn-wisata-prev-mobile" class="btn-ripple md:hidden flex items-center justify-center" style="display:none; position:absolute; width:40px; height:40px; left:6px; background:white; color:#4c1d95; border-radius:50%; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                         </button>
-                        <button id="btn-wisata-next-mobile" class="md:hidden" style="display:none; position:absolute; right:6px; background:white; color:#4c1d95; border-radius:50%; width:40px; height:40px; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
+                        <button id="btn-wisata-next-mobile" class="btn-ripple md:hidden flex items-center justify-center" style="display:none; position:absolute; right:6px; background:white; color:#4c1d95; border-radius:50%; width:40px; height:40px; box-shadow:0 4px 20px rgba(0,0,0,0.3); border:none; cursor:pointer; z-index:50;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
                         </button>
 
@@ -466,7 +466,7 @@
                         origRenderPage();
                         // Animate card transition with Motion
                         if (window.BVMotion) {
-                            var dir = 'next'; // default
+                            var dir = window._wisataDir || 'next';
                             window.BVMotion.animateCardTransition('wisata-cards-mobile', dir);
                             window.BVMotion.animateCardTransition('wisata-cards-desktop', dir);
                         }
